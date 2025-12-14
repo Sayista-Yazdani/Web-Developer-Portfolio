@@ -30,6 +30,7 @@ Welcome to my personal portfolio website! I'm **Sayista Yazdani**, a passionate 
 
 | Project Name | Description | Live | Code |
 |--------------|-------------|------|------|
+| **Wedding Invitation Website** | Wedding invitation responsive website | [Live](https://sayista-yazdani.github.io/Fitness_Club/) | [GitHub](https://github.com/Sayista-Yazdani/Wedding Invitations)  |
 | **Matrimony Website** | Matchmaking site with secure & intuitive UI | [Live](https://sayista-yazdani.github.io/SoulMatch.io/) | [GitHub](https://github.com/Sayista-Yazdani/SoulMatch.io) |
 | **Gym Website** | Fitness-themed responsive website | [Live](https://sayista-yazdani.github.io/Fitness_Club/) | [GitHub](https://github.com/Sayista-Yazdani/Fitness_Club) |
 | **Flying Helicopter** | Fun CSS animation project | [Live](https://sayista-yazdani.github.io/Flying_Helicoptor_Animation/) | [GitHub](https://github.com/Sayista-Yazdani/Flying_Helicoptor_Animation) |
