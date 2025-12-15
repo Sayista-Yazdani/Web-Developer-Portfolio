@@ -2,340 +2,324 @@
 <html lang="en">
 
 <head>
+
+    <!-- SEO -->
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title>Sayista Yazdani - Web Developer Portfolio</title>
-    <meta name="description" content="Sayista Yazdani is a passionate UI/UX Designer and Web Developer specializing in modern, responsive websites and creative digital experiences.">
-    <meta name="keywords" content="Sayista Yazdani, UI/UX Designer, Web Developer, Frontend Developer, Portfolio, HTML, CSS, JavaScript, Bootstrap, Figma">
+    <meta name="theme-color" content="#0b0b0f">
+    <title>Sayista Yazdani - Developer Portfolio 😇</title>
+    <meta name="description"
+        content="Sayista Yazdani is a passionate UI/UX Designer and Web Developer specializing in modern, responsive websites and creative digital experiences.">
+    <meta name="keywords"
+        content="Sayista Yazdani, UI/UX Designer, Web Developer, Frontend Developer, Portfolio, HTML, CSS, JavaScript, Bootstrap, Figma,Siya Portfolio, Life Journey">
     <meta name="author" content="Sayista Yazdani">
-    <link rel="canonical" href="https://sayista-yazdani.github.io/Web-Developer-Portfolio/"/>
-    
+    <link rel="canonical" href="https://sayista-yazdani.github.io/Web-Developer-Portfolio/" />
+
 
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Sayista Yazdani -  Web Developer">
-    <meta property="og:description" content="Explore the creative portfolio of Sayista Yazdani – passionate about intuitive digital experiences and modern web design.">
+    <meta property="og:description"
+        content="Explore the creative portfolio of Sayista Yazdani – passionate about intuitive digital experiences and modern web design.">
 
-    <meta property="og:image" content="https://sayista-yazdani.github.io/image/p1.jpg"> <!-- Replace with your actual hosted image URL -->
+    <meta property="og:image" content="https://sayista-yazdani.github.io/image/sayista.webp">
+    <!-- Replace with your actual hosted image URL -->
     <meta property="og:url" content="https://sayista-yazdani.github.io/Web-Developer-Portfolio/">
 
     <meta property="og:type" content="website">
 
 
     <!-- Favicon  -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/6a4ce21491.js" crossorigin="anonymous"></script>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-    <!-- CSS & AOS -->
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
 
 
-
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Sayista Yazdani",
-  "url": "https://sayista-yazdani.github.io/Web-Developer-Portfolio/",
-  "image": "https://sayista-yazdani.github.io/image/p1.jpg",
-  "jobTitle": "Web Developer",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "RSY Manpower"
-  },
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "SRM Institute of Science and Technology"
-  },
-  "sameAs": [
-    "https://github.com/Sayista-Yazdani",
-    "https://www.linkedin.com/in/sayista-yazdani-465769215",
-    "https://www.instagram.com/si.ya2336/"
-  ],
-  "knowsAbout": [
-    "UI/UX Design",
-    "Web Development",
-    "Java",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "Bootstrap",
-    "Figma",
-    "PHP",
-    "MySQL"
-  ]
-}
-</script>
-
-
-
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sayista Yazdani",
+        "url": "https://sayista-yazdani.github.io/Web-Developer-Portfolio/",
+        "image": "https://sayista-yazdani.github.io/image/sayista.webp",
+        "jobTitle": "Web Developer",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "RSY Manpower"
+        },
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "SRM Institute of Science and Technology"
+        },
+        "sameAs": [
+            "https://github.com/Sayista-Yazdani",
+            "https://www.linkedin.com/in/sayista-yazdani-465769215",
+            "https://www.instagram.com/si.ya2336/"
+        ],
+        "knowsAbout": [
+            "UI/UX Design",
+            "Web Development",
+            "Java",
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Bootstrap",
+            "Figma",
+            "PHP",
+            "MySQL"
+        ]
+        }
+        </script>
 </head>
 
-<body>
-    <div id="header" >
-          <div class="bubble-container" id="bubbleContainer"></div>
-        <div class="head"   data-aos="fade-down">
-            <nav>
-                <p><span>P</span>ortfolio</p>
-                <ul id="sidemenu">
-                    <!-- <li><a href="#header">Home</a></li> -->
-                    <li><a href="#about" aria-label="Navigate to About section">About</a></li>
-                    <li><a href="#services" aria-label="Navigate to Services section">Services</a></li>
-                    <li><a href="#portfolio" aria-label="Navigate to Portfolio Projects section">Projects</a></li>
-                    <li><a href="#contact" aria-label="Navigate to Contact section">Contact</a></li>
-                    <i class="fa-solid fa-xmark fas faicon" aria-label="Close navigation menu"  onclick="closemenu()"></i>
-                </ul>
-                <i class="fa-solid fa-bars fas faicon" aria-label="Open navigation menu" onclick="openmenu()"></i>
-            </nav>
-        
+<body class="dark">
 
-            <div class="header-text">
-                <p data-aos="fade-left">Web Developer</p>
-                <h1 data-aos="fade-right">Hi, I'm <span class="txt-light"> Sayista Yazdani</span></h1>
+    <!-- NAVBAR -->
+    <header class="nav glass">
+        <h2 class="logo"><span>P</span>ortfolio</h2>
 
-            </div>
+        <button class="menu-btn" id="menuBtn">☰</button>
+
+        <nav id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <button id="toggle" aria-label="Toggle dark mode">🌙</button>
+
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero section">
+        <canvas id="bubbleCanvas"></canvas>
+        <p class="role txt-light" data-aos="fade-down">Web Developer</p>
+
+        <h1 class="drop-text">
+            <span>Hi,</span>
+            <span>I'm</span>
+            <span class="highlight txt-light">Sayista</span>
+            <span>Yazdani</span>
+        </h1>
+
+        <p class="desc" data-aos="fade-up">
+            Building modern, responsive & user-friendly web experiences
+        </p>
+
+        <div class="hero-btns" data-aos="zoom-in">
+            <a href="#projects" class="btn primary">View Work</a>
+            <a href="#contact" class="btn ghost">Contact</a>
         </div>
-    </div>
-    
-    <!-- about -->
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-1" data-aos="fade-left">
-                    <img src="image/p1.jpg" alt="Sayista Yazdani Profile Picture"  loading="eager">
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about" class="section glass" data-aos="fade-up">
+
+        <img src="image/sayista.webp" alt="Sayista Profile Image" class="profile-img" loading="lazy" width="140"
+            height="140">
+
+        <h2>About Me</h2>
+        <p class="text">
+            MCA student and Web Developer passionate about clean UI,
+            responsive design and modern frontend experiences.
+        </p>
+
+        <div class="chips">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            <span>Bootstrap</span><span>.NET</span><span>C#</span><span>Figma</span><span>MS-Office</span>
+        </div>
+
+        <div class="about-grid">
+
+            <!-- EDUCATION -->
+            <div class="about-card glass" data-aos="fade-right">
+                <h3>🎓 Education</h3>
+
+                <div class="about-item">
+                    <h4>MCA – Master of Computer Applications</h4>
+                    <p>SRM Institute of Science & Technology, Delhi NCR</p>
+                    <span>2023 – 2025</span>
                 </div>
-                <div class="about-col-2" data-aos="fade-right">
-                    <h2 class="sub-title">About Me</h2>
-                    <p>"Hello, I'm <span>Sayista Yazdani</span>, currently pursuing my master's degree in computer
-                        application at SRM INSTITUTE OF SCIENCE AND TECHNOLOGY. I'm dedicated web developer with a
-                        passion for crafting intuitive and user-friendly digital experiences. With a strong foundation
-                        in Java, C#, HTML, CSS and JavaScript, bootstrap framework. I've successfully delivered numerous
-                        projects that showcase my problem-solving skills and attention to detail. When I'm not coding,
-                        you can find me exploring new technologies or hiking with friends. I'm excited to collaborate
-                        and bring innovative ideas to life."</p>
 
-                    <div class="tab-titles">
-                        <p class="tab-links active-links faicon " onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links faicon" onclick="opentab('education')">Education</p>
-                        <p class="tab-links faicon" onclick="opentab('experience')">Experience</p>
-
-                    </div>
-
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            <li><span>UI/UX</span><br>Designing Web App Interfaces</li>
-                            <li><span>Responsive Web Development</span><br>HTML5 <br> CSS3 <br> Bootstrap Framework <br>
-                                JavaScript</li>
-                            <li><span>Programming Language</span><br> Java <br>C#</li>
-                            <li><span>Database</span><br> SQl <br> MySql</li>
-                               <li><span>Backend Programming</span><br> PHP</li>
-                            <li><span>Tools</span><br>Git And Github <br>Figma <br>Adobe Photoshop
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>2023-2025 - Pursuing</span><br>MCA From SRMIST</li>
-                            <li><span>2023</span><br>BCA From Maulana Mazharul Haque Arabic & Percian University, Patna
-                            </li>
-                            <li><span>2019</span><br>Intermediate From VNS College Narma</li>  
-                            
-                        </ul>
-                    </div>
-
-
-                    <div class="tab-contents" id="experience">
-                        <ul>
-                            <li><span>May-2024</span><br>Internship From OCTANET, Domain - Web Development</li>
-                            <li><span>May-2025</span><br>RSY Manpower, Position - HR</li>
-                        </ul>
-                    </div>
+                <div class="about-item">
+                    <h4>BCA – Bachelor of Computer Applications</h4>
+                    <p>Maulana Mazharul Haque Arabic & Persian University</p>
+                    <span>2019 – 2023</span>
                 </div>
             </div>
-        </div>
-    </div>
 
+            <!-- EXPERIENCE -->
+            <div class="about-card glass" data-aos="fade-left">
+                <h3>💼 Experience</h3>
 
-<!-- Enhanced Portfolio Section -->
-<section id="portfolio">
-  <div class="container">
-    <h2 class="sub-title" data-aos="fade-up">What I’ve Built</h2>
-    <h3 class="portfolio-tagline" data-aos="zoom-in" data-aos-delay="100">Coding Creations: Web Projects</h3>
-    <div class="work-list">
+                <div class="about-item">
+                    <h4>Talent Acquisition</h4>
+                    <p>RSY Manpower</p>
+                    <span>Naukri • LinkedIn • Indeed</span>
 
-      <!-- Matrimony -->
-      <div class="work enhanced parallax-bg" data-aos="flip-right" data-aos-delay="150">
-        <img src="image/matrimony.png" alt="Matrimony Website" loading="lazy">
-        <div class="layer glass">
-          <h3 class="glow">Matrimony Website</h3>
-          <p>Secure and modern matchmaking platform with a responsive and intuitive design.</p>
-          <div class="action-buttons">
-            <a href="https://github.com/Sayista-Yazdani/SoulMatch.io"><i class="fa-brands fa-github"></i></a>
-            <a href="https://sayista-yazdani.github.io/SoulMatch.io/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Helicopter -->
-      <div class="work enhanced parallax-bg" data-aos="flip-left" data-aos-delay="200">
-        <img src="image/helicopter.png" alt="Flying Helicopter" loading="lazy">
-        <div class="layer glass">
-          <h3 class="glow">Flying Helicopter</h3>
-          <p>Mini frontend project using HTML & CSS animations for playful, realistic motion.</p>
-          <div class="action-buttons">
-            <a href="https://github.com/Sayista-Yazdani/Flying_Helicoptor_Animation"><i class="fa-brands fa-github"></i></a>
-            <a href="https://sayista-yazdani.github.io/Flying_Helicoptor_Animation/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Gym -->
-      <div class="work enhanced parallax-bg" data-aos="flip-right" data-aos-delay="250">
-        <img src="image/gym.png" alt="Gym Website" loading="lazy">
-        <div class="layer glass">
-          <h3 class="glow">Gym Website</h3>
-          <p>Responsive, performance-focused fitness site with immersive AOS animations.</p>
-          <div class="action-buttons">
-            <a href="https://github.com/Sayista-Yazdani/Fitness_Club"><i class="fa-brands fa-github"></i></a>
-            <a href="https://sayista-yazdani.github.io/Fitness_Club/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-      </div>
-
-    <!-- Figma Splash Screen -->
-      <div class="work enhanced parallax-bg" data-aos="flip-left" data-aos-delay="300">
-        <img src="image/splash.png" alt="Figma Splash Screen" loading="lazy">
-        <div class="layer glass">
-          <h3 class="glow">Figma Splash Screen</h3>
-         <p>Designed a sleek splash screen in Figma with smooth fade-ins, slide animations, and custom shapes like blobs and waves—crafted to impress at first glance.</p>
-          <div class="action-buttons">
-            <a href="https://www.figma.com/design/NZnmYNs1tlj0UpQQrlqbJd/Recruit-crm-(Community)?node-id=0-1"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-      </div>   
-        
-      <!-- Figma CRM -->
-      <div class="work enhanced parallax-bg" data-aos="fade-in" data-aos-delay="300">
-        <img src="image/crm.png" alt="Figma Recruit CRM" loading="lazy">
-        <div class="layer glass">
-          <h3 class="glow">Figma Recruit CRM</h3>
-          <p>Redesigned login/signup pages in Figma for clean, accessible UI/UX flow.</p>
-          <div class="action-buttons">
-            <a href="https://www.figma.com/design/NZnmYNs1tlj0UpQQrlqbJd/Recruit-crm-(Community)?node-id=0-1"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-      </div>
-
-      
-    </div>
-    <a href="https://github.com/Sayista-Yazdani?tab=repositories" class="btn glow-button pulse" data-aos="zoom-in-up" data-aos-delay="350">See More Projects on GitHub</a>
-  </div>
-</section>
-
-    <!-- ----------services------- -->
-    
-    <div id="services" data-aos="fade-left">
-        <div class="container">
-            <h2 class="sub-title">What I Offer</h2>
-            <div class="services-list">
-                <div class="glow-button pulse">
-                    <i class="fa-solid fa-code faicon"></i>
-                    <h3>Web Design</h3>
-                    <p>
-                    I specialize in crafting modern, responsive websites that combine aesthetic appeal with strategic functionality.
-                    Whether building from scratch or redesigning existing platforms, I focus on delivering intuitive user experiences
-                    that align with brand identity and business goals. My designs are optimized for performance, accessibility, and engagement.
-                    </p>
-
-                  
                 </div>
-                <div class="glow-button pulse">
-                    <i class="fa-solid fa-crop faicon"></i>
-                    <h3>UI/UX Design</h3>
-                    <p>
-                    I take a user-centered approach to UI/UX design, translating complex ideas into clean, interactive interfaces.
-                    My process involves deep user research, wireframing, prototyping, and usability testing to ensure every product
-                    is both visually compelling and functionally seamless. I aim to enhance user satisfaction while driving measurable results.
-                    </p>
-                  
+
+                <div class="about-item">
+                    <h4>Web Developer (Projects)</h4>
+                    <p>Personal & Academic Projects</p>
+                    <span>HTML • CSS • JS • PHP • MySQL</span>
                 </div>
-                <div class="glow-button pulse">
-                    <i class="fa-brands fa-app-store-ios faicon"></i>
-                    <h3>Frontend Development</h3>
-                    <p>
-                    I deliver pixel-perfect, scalable frontend solutions using modern frameworks and best practices.
-                    My development work ensures cross-browser compatibility, mobile responsiveness, and smooth interactions.
-                    I bridge the gap between design and technology to bring user interfaces to life with clean, maintainable code.
-                    </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="projects" class="section">
+        <h2>What I’ve Built</h2>
+
+        <div class="project-grid">
+
+            <div class="project glass" data-aos="zoom-in">
+                <h3>Wedding Invitation Website</h3>
+                <p>Responsive Wedding Invitation site with smooth animations</p>
+
+                <div class="tags">
+                    <span>HTML</span><span>CSS</span><span>JS</span><span>Bootstrap</span><span>SEO</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://github.com/Sayista-Yazdani/Wedding-Invitation" target="_blank">GitHub</a>
+                    <a href="https://sayista-yazdani.github.io/Wedding-Invitation/" target="_blank">Live</a>
+                </div>
+            </div>
+
+            <div class="project glass" data-aos="zoom-in" data-aos-delay="100">
+                <h3>Matrimony Website</h3>
+                <p>Creative Matchmaking site with secure & intuitive UI</p>
+
+                <div class="tags">
+                    <span>HTML</span><span>CSS</span><span>JS</span><span>Bootstrap</span><span>Responsive</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://github.com/Sayista-Yazdani/SoulMatch.io" target="_blank">GitHub</a>
+                    <a href="https://sayista-yazdani.github.io/SoulMatch.io/" target="_blank">Live</a>
+                </div>
+            </div>
+
+            <div class="project glass" data-aos="zoom-in" data-aos-delay="200">
+                <h3>Figma Splash Screen & Login Form Design </h3>
+                <p>Clean, modern authentication UI</p>
+
+                <div class="tags">
+                    <span>Figma</span><span>UI</span><span>UX</span><span>Splash Screen</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://www.figma.com/proto/cmVZugB4KPi9sHS2jKlPsn/Untitled?node-id=29-4&t=Cef7KZmOD5Gklc0E-1"
+                        target="_blank">Live</a>
+                    <a href="https://www.figma.com/proto/cC2y35MHif3WdTZx9vzAyp/Recruit-crm?node-id=0-1&t=aF9Q0jYhxIdgaWkb-1"
+                        target="_blank">Live</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hero-btns git-btn"> <a href="https://github.com/Sayista-Yazdani?tab=repositories"
+                class="btn primary">View Work</a></div>
+    </section>
+
+
+    <!-- CONTACT ME -->
+
+    <section id="contact" class="section glass contact" data-aos="fade-up">
+
+        <h2>Contact Me</h2>
+        <p class="contact-subtitle">
+            Have a project or opportunity? Let’s talk.
+        </p>
+
+        <div class="contact-wrapper">
+
+            <!-- CONTACT INFO -->
+            <div class="contact-info">
+                <div class="info-box">
+                    <span>📧</span>
+                    <p>sayistayazdani1999@gmail.com</p>
+                </div>
+
+                <div class="info-box">
+                    <span>📍</span>
+                    <p>Muzaffarpur Bihar, India</p>
+                </div>
+
+                <div class="info-box">
+                    <span>💼</span>
+                    <p>Open to Internships & Full-time Roles</p>
+                </div>
+
+
+                <div class=" info-box social-icons">
+                    <a href="https://github.com/Sayista-Yazdani" aria-label="Visit Sayista Yazdani's GitHub profile"><i
+                            class="fa-brands fa-github faicon" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/si.ya2336/"
+                        aria-label="Visit Sayista Yazdani's Instagram profile"><i
+                            class="fa-brands fa-instagram faicon"></i></a>
+                    <a href="https://www.linkedin.com/in/sayista-yazdani-465769215"
+                        aria-label="Visit Sayista Yazdani's LinkedIn profile"><i
+                            class="fa-brands fa-linkedin faicon"></i></a>
+
 
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- -----------contact----------- -->
 
-    <div id="contact" data-aos="fade-left" >
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h2 class="sub-title">Contact Me</h2>
-                    <div>
-                        <i class="fa-solid fa-paper-plane faicon"></i>
-                        <p>sayistayazdani1999@gmail.com</p>
-                    </div>
-                   
-                    <div class="social-icons"> 
-                        <a href="https://github.com/Sayista-Yazdani" aria-label="Visit Sayista Yazdani's GitHub profile"><i class="fa-brands fa-github-square faicon"></i></a>
-                        <a href="https://www.instagram.com/si.ya2336/"   aria-label="Visit Sayista Yazdani's Instagram profile"><i class="fa-brands fa-instagram faicon"></i></a>
-                        <a href="https://www.linkedin.com/in/sayista-yazdani-465769215"  aria-label="Visit Sayista Yazdani's LinkedIn profile"><i class="fa-brands fa-linkedin faicon"></i></a>
-                    </div>
-                 
+            <!-- CONTACT FORM -->
+            <form class="contact-form" autocomplete="off">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="4" placeholder="Your Message" required></textarea>
 
+                <button type="submit" class="btn primary">
+                    Send Message
+                </button>
+            </form>
 
-                    <a href="image/Resume.pdf" download class="btn btn2 glow-button pulse"   aria-label="Download Sayista Yazdani's resume in PDF format">Download CV</a>
-                </div>
-                <div class="contact-right">
-                    <form method="post"
-                        action="https://script.google.com/macros/s/AKfycbzaKOh4DDMyYf6IYbNKJkyvu1HGSpP4i1GHvk08_Ni_LodFNjdFL5XVKHBPD_kKYEN7/exec"
-                        name="contact-form">
-                        <input type="text" name="Name" placeholder="Enter Your Name" required>
-                        <input type="email" name="Email" placeholder="Enter Your Email" required>
-                        <textarea name="message" rows="6" placeholder="Your Message"></textarea>
-
-                        <button type="submit" class="btn btn2 glow-button pulse">Submit</button>
-                    </form>
-                </div>
-            </div>
         </div>
 
-        <div class="copyright">
-            <p>@Copyright ©2024 created by Sayista Yazdani | all rights reserved </p>
-        </div>
-    </div>
+    </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div>© 2025 Sayista Yazdani</div>
+
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 600, // Animation duration
-            easing: 'ease-in-out', // Easing function
-            once: true, // Whether animation should happen only once - while scrolling down
+            duration: 800,
+            once: true,
+            offset: 80
         });
+
     </script>
 
-    <script src="script.js"></script>
-
 </body>
+
 </html>
