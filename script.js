@@ -1,70 +1,127 @@
-const bubbleContainer = document.getElementById('bubbleContainer');
 
-function createBubble() {
-  const bubble = document.createElement('div');
-  bubble.classList.add('bubble');
+/* ===========================
+    THEME TOGGLER
+=========================== */
 
-  const size = Math.random() * 12 + 6;
-  bubble.style.width = `${size}px`;
-  bubble.style.height = `${size}px`;
 
-  bubble.style.left = `${Math.random() * 100}%`;
-  bubble.style.animationDuration = `${Math.random() * 4 + 3}s`;
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
 
-  bubbleContainer.appendChild(bubble);
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
 
-  setTimeout(() => {
-    bubble.remove();
-  }, 7000);
+
+
+const toggle = document.getElementById("toggle");
+const body = document.body;
+
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) body.className = savedTheme;
+
+toggle.addEventListener("click", () => {
+  body.classList.toggle("light");
+  body.classList.toggle("dark");
+
+  toggle.textContent = body.classList.contains("dark") ? "🌙" : "☀️";
+
+  localStorage.setItem(
+    "theme",
+    body.classList.contains("dark") ? "dark" : "light"
+  );
+});
+
+
+
+
+
+
+/* ===========================
+   HERO BUBBLE FLOW ANIMATION
+=========================== */
+
+const canvas = document.getElementById("bubbleCanvas");
+const ctx = canvas.getContext("2d");
+
+let bubbles = [];
+let bubbleCount = 35;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = document.getElementById("home").offsetHeight;
 }
 
-// Generate bubbles continuously
-setInterval(createBubble, 300);
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
 
+class Bubble {
+  constructor() {
+    this.reset();
+  }
 
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = canvas.height + Math.random() * 100;
+    this.radius = Math.random() * 6 + 2;
+    this.speed = Math.random() * 0.8 + 0.4;
+    this.opacity = Math.random() * 0.4 + 0.2;
+  }
 
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 122, 162, ${this.opacity})`;
+    ctx.fill();
+  }
 
+  update() {
+    this.y -= this.speed;
 
-var tablinks = document.getElementsByClassName("tab-links");
-var tabcontents = document.getElementsByClassName("tab-contents");
-
-function opentab(tabname){
-    for(tablink of tablinks){
-        tablink.classList.remove("active-links");
+    if (this.y + this.radius < 0) {
+      this.reset();
     }
+  }
+}
 
-    for(tabcontent of tabcontents){
-        tabcontent.classList.remove("active-tab");
-    }
+function initBubbles() {
+  bubbles = [];
+  for (let i = 0; i < bubbleCount; i++) {
+    bubbles.push(new Bubble());
+  }
+}
 
-    event.currentTarget.classList.add("active-links");
-    document.getElementById(tabname).classList.add("active-tab");
+let animationId;
+
+function animateBubbles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  bubbles.forEach(bubble => {
+    bubble.update();
+    bubble.draw();
+  });
+  animationId = requestAnimationFrame(animateBubbles);
 }
 
 
+initBubbles();
+animateBubbles();
 
 
-var sidemenu = document.getElementById("sidemenu")
-
-function openmenu(){
-    sidemenu.style.right = "0";
-}
-function closemenu(){
-    sidemenu.style.right = "-200px";
-}
-
-// ----------------for contact us form---------------
-
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzaKOh4DDMyYf6IYbNKJkyvu1HGSpP4i1GHvk08_Ni_LodFNjdFL5XVKHBPD_kKYEN7/exec'
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    cancelAnimationFrame(animationId);
+  } else {
+    animateBubbles();
+  }
+});
 
 
-const form = document.forms['contact-form']
+/* ===========================
+   CONTACT FORM HANDLING
+=========================== */
 
 
-form.addEventListener('submit', e => {
-  e.preventDefault()
-  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-  .then(response => alert("Thank you! your form is submitted successfully." ))
-  .then(() => { window.location.reload(); })
-  .catch(error => console.error('Error!', error.message))
-})
+document.querySelector(".contact-form").addEventListener("submit", e => {
+  e.preventDefault();
+  alert("Thank you! Your message has been sent.");
+  e.target.reset();
+});
