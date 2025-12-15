@@ -10,19 +10,33 @@ Welcome to my personal portfolio website! I'm **Sayista Yazdani**, a passionate 
 ## ✨ About Me
 
 🎓 Currently pursuing my MCA at **SRM Institute of Science and Technology**  
-💻 Skilled in: `HTML`, `CSS`, `JavaScript`, `Bootstrap`, `Java`, `C#`, `PHP`, and design tools like **Figma** & **Photoshop**  
+💻 Skilled in: `HTML`, `CSS`, `JavaScript`, `Bootstrap`, `C#`, `PHP`, and design tools like **Figma** & **Photoshop**  
 🎯 I enjoy solving design problems and building engaging, intuitive web interfaces.
 
 ---
 
-## 📁 Features
 
-- 🎨 Clean & modern UI design
-- ⚙️ Responsive layout for all devices
-- 💻 Project showcase with GitHub and live demo links
-- 📜 Smooth animations (AOS)
-- 📩 Contact form using Google Apps Script
-- 🧠 SEO optimized with meta tags, Open Graph, and schema markup
+
+## ✨ Features
+
+- 📱 **Fully responsive** (Mobile, Tablet, Desktop)
+- 🌗 **Dark / Light mode** toggle
+- 🎞️ **Smooth scrolling & subtle animations**
+- 🧊 **Glassmorphism UI design**
+- 🔍 **SEO optimized** (Meta tags, Open Graph, Schema)
+- 🫧 **Interactive hero section** with canvas animation
+- 🧹 **Clean and structured codebase**
+
+
+---
+
+## 📈 SEO & Performance
+
+- Semantic HTML
+- Optimized images
+- Meta description & keywords
+- Open Graph & JSON-LD schema for better discoverability
+
 
 ---
 
