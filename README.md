@@ -54,10 +54,10 @@ Welcome to my personal portfolio website! I'm **Sayista Yazdani**, a passionate 
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap
-- **Design**: Figma, Adobe Photoshop
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Design**: Figma
 - **Animation**: AOS (Animate on Scroll)
-- **Backend**: PHP, Google Apps Script (for contact form)
+- **Backend**: PHP,MySql
 - **Version Control**: Git & GitHub
 
 ---
