@@ -1,0 +1,15 @@
+# 🤖 robots.txt for Wedding Invitation Website
+# Author: Sayista Yazdani
+# Last Updated: 2025-12-22
+
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Disallow unnecessary folders
+Disallow: /image/
+Disallow: /backup/
+
+# Point to your sitemap
+Sitemap: https://sayista-yazdani.github.io/Web-Developer-Portfolio/sitemap.xml
