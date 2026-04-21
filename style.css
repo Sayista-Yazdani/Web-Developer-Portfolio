@@ -96,14 +96,14 @@ body.light {
 }
 
 #toggle {
-  padding: 10px;
-  margin-left:10px;
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  background:var(--bg-dark);
-  border-radius:50%;
+     padding: 10px;
+    margin-left: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    background: #e0a2b578;
+    border-radius: 20px;
   
 }
 
