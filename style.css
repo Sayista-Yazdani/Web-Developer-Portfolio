@@ -96,6 +96,7 @@ body.light {
 }
 
 #toggle {
+  margin-left:4px;
   background: none;
   border: none;
   font-size: 18px;
