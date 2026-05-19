@@ -1,16 +1,14 @@
-# 🤖 robots.txt for Wedding Invitation Website
+# 🤖 robots.txt for Sayista Yazdani - Personal Portfolio Website
 # Author: Sayista Yazdani
-# Last Updated: 2026-01-03
-
+# Last Updated: 2026-05-19
 
 # Allow all search engines to crawl everything
 User-agent: *
 Allow: /
+Allow: /image/         # Enabled so portfolio preview images & profile pic index on Google!
 
-# Disallow unnecessary folders
-Disallow: /image/
+# Disallow backup folders
 Disallow: /backup/
 
-# Point to your sitemap
-
+# Point to sitemap
 Sitemap: https://sayista-yazdani.github.io/Web-Developer-Portfolio/sitemap.xml
