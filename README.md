@@ -1,81 +1,65 @@
-# 🌐 Sayista Yazdani – UI/UX Designer & Web Developer Portfolio
+# 🌐 Sayista Yazdani – Portfolio Website
 
-Welcome to my personal portfolio website! I'm **Sayista Yazdani**, a passionate UI/UX designer and web developer who loves crafting responsive, user-friendly digital experiences. This portfolio showcases my creative and technical skills through a collection of frontend and UI/UX projects.
+Welcome to my personal developer portfolio! I am **Sayista Yazdani**, a passionate UI/UX developer and SaaS software engineer pursuing MCA at SRM Institute of Science and Technology. 
+
+This repository houses my fully optimized, highly interactive, and aesthetically stunning professional developer portfolio website.
 
 🔗 **Live Website**:  
 [https://sayista-yazdani.github.io/Web-Developer-Portfolio/](https://sayista-yazdani.github.io/Web-Developer-Portfolio/)
 
 ---
 
-## ✨ About Me
+## ✨ Design & Visual Highlights
 
-🎓 Currently pursuing my MCA at **SRM Institute of Science and Technology**  
-💻 Skilled in: `HTML`, `CSS`, `JavaScript`, `Bootstrap`, `C#`, `PHP`, and design tools like **Figma** & **Photoshop**  
-🎯 I enjoy solving design problems and building engaging, intuitive web interfaces.
-
----
-
-
-
-## ✨ Features
-
-- 📱 **Fully responsive** (Mobile, Tablet, Desktop)
-- 🌗 **Dark / Light mode** toggle
-- 🎞️ **Smooth scrolling & subtle animations**
-- 🧊 **Glassmorphism UI design**
-- 🔍 **SEO optimized** (Meta tags, Open Graph, Schema)
-- 🫧 **Interactive hero section** with canvas animation
-- 🧹 **Clean and structured codebase**
-
+- 🌗 **Advanced Glassmorphism UI**: High-end modern SaaS visual aesthetics with dark-theme focus.
+- 🫧 **Interactive Physics Engine**: Liquid bubble canvas physics in the hero section that deflect dynamically on mouse move.
+- 📱 **Responsive Fluid Layout**: Mobile-first grid layouts working flawlessly across screens from mobile to ultra-wide desktops.
+- 📬 **Serverless Inquire Popup (Micro Modal)**: Custom glassmorphic popups for each project card linked dynamically with **Web3Forms API** for silent background email submission.
+- ⚡ **Micro-interactions**: Elegant AOS scroll effects, neon-pink glows, and smooth transitions on hover states.
 
 ---
 
-## 📈 SEO & Performance
+## 💼 Featured Projects Showcase
 
-- Semantic HTML
-- Optimized images
-- Meta description & keywords
-- Open Graph & JSON-LD schema for better discoverability
+My portfolio showcases 6 major web development and UI/UX projects, including modern AI products, dynamic portal sites, and high-conversion landing systems:
 
-
----
-
-## 💼 Projects Highlighted
-
-| Project Name | Description | Live | Code |
-|--------------|-------------|------|------|
-| **Wedding Invitation Website** | Wedding invitation responsive website | [Live](https://sayista-yazdani.github.io/Wedding-Invitation/) | [GitHub](https://github.com/Sayista-Yazdani/Wedding-Invitation)  |
-| **Matrimony Website** | Matchmaking site with secure & intuitive UI | [Live](https://sayista-yazdani.github.io/SoulMatch.io/) | [GitHub](https://github.com/Sayista-Yazdani/SoulMatch.io) |
-| **Gym Website** | Fitness-themed responsive website | [Live](https://sayista-yazdani.github.io/Fitness_Club/) | [GitHub](https://github.com/Sayista-Yazdani/Fitness_Club) |
-| **Flying Helicopter** | Fun CSS animation project | [Live](https://sayista-yazdani.github.io/Flying_Helicoptor_Animation/) | [GitHub](https://github.com/Sayista-Yazdani/Flying_Helicoptor_Animation) |
-| **Figma Splash/CRM** | Sleek designs crafted in Figma | [Splash Screen](https://www.figma.com/design/NZnmYNs1tlj0UpQQrlqbJd/Recruit-crm-(Community)?node-id=0-1) | - |
+| Project Name | Technology Stack | Description | Links |
+|--------------|-------------------|-------------|-------|
+| **Gemma Doc Pro** | `React`, `TailwindCSS`, `Mermaid.js`, `GitHub API` | AI-powered Markdown editor and interactive Mermaid flowchart generator with serverless repository synchronization. | [Code](https://github.com/Sayista-Yazdani/gemma-doc-pro) |
+| **Catpyqs Prep Portal** | `Core PHP`, `MySQL`, `CMS Panel`, `OTP API` | Premium test preparation portal featuring previous year papers, integrated 2Factor.in OTP authentication system, and glassmorphic dashboards. | [Live](http://catpyqs.mbapathshala.com/) |
+| **Interactive Course Page** | `Core PHP`, `HTML`, `CSS`, `JS`, `Bootstrap` | High-conversion responsive landing page featuring smooth pricing calculators, dynamic student testimonial carousels, and rich layout accents. | [Live](https://catpyqs.mbapathshala.com/course/zenith-batch-2026) |
+| **MBA Result & Mock Portal** | `PHP MVC`, `MySQL`, `CMS Panel`, `Bootstrap` | Production-ready MVC Student Result & Mock Portal featuring dynamic CMS layout components, students mapping, and secure admin control board. | [Live](https://sayista-yazdani.github.io/Web-Developer-Portfolio/) |
+| **Wedding Invitation Website** | `HTML`, `CSS`, `JS`, `Bootstrap`, `SEO` | Elegant invitation platform featuring smooth parallax scrolling, custom ambient music controls, and secure interactive guest RSVP forms. | [Live](https://sayista-yazdani.github.io/Wedding-Invitation/) \| [Code](https://github.com/Sayista-Yazdani/Wedding-Invitation) |
+| **Matrimony Website** | `HTML`, `CSS`, `JS`, `Bootstrap`, `Responsive` | Creative matchmaking platform featuring secure profile grid layouts, customized filters, and smooth responsive card transitions. | [Live](https://sayista-yazdani.github.io/SoulMatch.io/) \| [Code](https://github.com/Sayista-Yazdani/SoulMatch.io) |
 
 ---
 
-## 🛠️ Technologies Used
+## 📈 SEO & Performance Optimization
 
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Design**: Figma
-- **Animation**: AOS (Animate on Scroll)
-- **Backend**: PHP,MySql
-- **Version Control**: Git & GitHub
+- **Semantic Markup**: Full accessibility and structural hierarchy using modern HTML5 elements.
+- **Fast LCP & FCP**: Clean CSS architecture without heavy framework overhead to maximize loading speeds.
+- **JSON-LD Structured Data**: High-discoverability meta tagging and Open Graph details.
 
 ---
 
-## 📬 Contact Me
+## 🛠️ Core Technologies & Tools
 
-Feel free to reach out for collaboration, internships, or just to say hello!
-
-- ✉️ Email: [sayistayazdani1999@gmail.com](mailto:sayistayazdani1999@gmail.com)
-- 💼 LinkedIn: [Sayista Yazdani](https://www.linkedin.com/in/sayista-yazdani-465769215)
-- 🌐 Portfolio: [Visit Website](https://sayista-yazdani.github.io/Web-Developer-Portfolio/)
-
----
-
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).
+- **Languages**: HTML5, CSS3, JavaScript, PHP, SQL
+- **Frameworks & Libs**: Bootstrap, React, TailwindCSS, AOS (Animate on Scroll)
+- **UI/UX Design**: Figma, Adobe Photoshop
+- **Version Control & Deployments**: Git, GitHub Pages, XAMPP, GoDaddy Remote Servers
+- **Integrations**: Web3Forms background API, 2Factor OTP API
 
 ---
 
-> Built with 💖 by Sayista Yazdani | UI/UX Designer & Web Developer
+## 📬 Connect with Me
+
+I'm currently open to internships, full-time engineering roles, and freelance collaborations. Let's build something amazing together!
+
+- 📧 Email: [sayistayazdani1999@gmail.com](mailto:sayistayazdani1999@gmail.com)
+- 💼 LinkedIn: [Sayista Yazdani on LinkedIn](https://www.linkedin.com/in/sayista-yazdani-465769215)
+- 🌐 Live Portfolio: [sayista-yazdani.github.io](https://sayista-yazdani.github.io/Web-Developer-Portfolio/)
+
+---
+
+> Built with 💖 by Sayista Yazdani | MCA SRM Student, UI/UX Designer & Web Developer
