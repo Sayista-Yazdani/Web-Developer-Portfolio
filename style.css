@@ -1132,7 +1132,8 @@ body.light .tech-marquee-item {
   justify-content: center;
 }
 
-.stat-number {
+.stat-number,
+.stat-percent {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-weight: 700;
   color: var(--accent);
