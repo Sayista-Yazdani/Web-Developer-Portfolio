@@ -11,11 +11,13 @@ This repository houses my fully optimized, highly interactive, and aesthetically
 
 ## ✨ Design & Visual Highlights
 
-- 🌗 **Advanced Glassmorphism UI**: High-end modern SaaS visual aesthetics with dark-theme focus.
-- 🫧 **Interactive Physics Engine**: Liquid bubble canvas physics in the hero section that deflect dynamically on mouse move.
-- 📱 **Responsive Fluid Layout**: Mobile-first grid layouts working flawlessly across screens from mobile to ultra-wide desktops.
+- 🌗 **Advanced Glassmorphism UI**: High-end modern SaaS visual aesthetics with a persistent, user-configurable light/dark mode theme manager.
+- 🫧 **Interactive Physics Engine**: High-DPI Retina-optimized liquid bubble canvas physics in the hero section that deflect dynamically on mouse movement, throttled and debounced for performance.
+- 📱 **Responsive Fluid Layout**: Mobile-first grid layouts working flawlessly across all devices with self-collapsing WCAG AAA contrast-compliant mobile navigation.
 - 📬 **Serverless Inquire Popup (Micro Modal)**: Custom glassmorphic popups for each project card linked dynamically with **Web3Forms API** for silent background email submission.
-- ⚡ **Micro-interactions**: Elegant AOS scroll effects, neon-pink glows, and smooth transitions on hover states.
+- 🔦 **Dynamic Mouse-Tracking Spotlight Cards**: Modern hover masking on project cards where cursor coordinates paint a glowing neon radial border dynamically.
+- 🎡 **Infinite Tech Stack Marquee (Fluid Carousel)**: Continuous, ultra-smooth horizontal marquee scrolling of technology badges with active pause state on hover and rotational animations.
+- 📊 **Dynamic Live Stats & Reach Outs Counters**: A responsive glassmorphic statistics dashboard featuring scroll-triggered count-up animations. It dynamically calculates active project counts, unique stack elements, and accessibility metrics, alongside a persistent **Reach Outs** counter that increments live upon successful inquiry submissions.
 
 ---
 

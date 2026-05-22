@@ -1,12 +1,12 @@
-/* Render-blocking font import removed; consolidated Google Fonts request placed in index.html for maximum performance */
+
 
 :root {
   --bg-dark: #0b0b0f;
   --bg-light: #f8f9fa;
   --text-dark: #f8f9fa;
   --text-light: #121214;
-  --accent-pink-dark: #ff7aa2;  /* Glowing premium pink for dark mode */
-  --accent-pink-light: #d81b60; /* High contrast crimson-pink for light mode */
+  --accent-pink-dark: #ff7aa2;  
+  --accent-pink-light: #d81b60; 
   --accent: var(--accent-pink-dark);
   --shadow-rgb: 255, 122, 162;
   --glass-bg: rgba(255, 255, 255, 0.08);
@@ -15,7 +15,6 @@
   --nav-mobile-text: #f8f9fa;
 }
 
-/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -53,7 +52,7 @@ body.dark {
 
 body.light {
   --accent: var(--accent-pink-light);
-  --shadow-rgb: 216, 27, 96; /* Elegant darker crimson glow for light theme */
+  --shadow-rgb: 216, 27, 96; 
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(0, 0, 0, 0.08);
   --nav-mobile-bg: rgba(255, 255, 255, 0.96);
@@ -62,7 +61,6 @@ body.light {
   color: var(--text-light);
 }
 
-/* GLASS */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
@@ -74,7 +72,6 @@ body.light {
   box-shadow: 0 0 35px rgba(var(--shadow-rgb), 0.25);
 }
 
-/* NAV */
 .nav {
   position: fixed;
   top: 15px;
@@ -125,14 +122,12 @@ body.light {
   
 }
 
-/* SECTIONS */
 .section {
   padding: 110px 8%;
   text-align: center;
   transition: 0.6s ease;
 }
 
-/* MENU BUTTON */
 .menu-btn {
   display: none;
   background: none;
@@ -147,13 +142,10 @@ body.light {
   align-items: center;
 }
 
-
-/* HERO */
 .hero {
   padding-top: 160px;
 }
 
-/* BUBBLE CANVAS */
 #bubbleCanvas {
   position: absolute;
   top: 0;
@@ -169,20 +161,16 @@ body.light {
   overflow: hidden;
 }
 
-/* .hero h1 { font-size: 34px; margin: 15px 0; } */
 .role {
   color: var(--accent);
   letter-spacing: 3px;
   font-size: 14px;
 }
 
-
 .highlight {
   color: var(--accent);
 }
 
-
-/* Animation */
 @keyframes rotateLight {
   from {
     --rotate: 0.25turn;
@@ -193,9 +181,6 @@ body.light {
   }
 }
 
-
-
-/* HERO HEADING */
 .drop-text {
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 700;
@@ -205,14 +190,12 @@ body.light {
   justify-content: center;
 }
 
-/* Each word drops */
 .drop-text span {
   opacity: 0;
   transform: translateY(-40px);
   animation: dropIn 0.7s ease forwards;
 }
 
-/* Delay per word */
 .drop-text span:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -236,14 +219,11 @@ body.light {
   }
 }
 
-
-
 .desc {
   color: #aaa;
   margin: 20px 0;
 }
 
-/* BUTTONS */
 .btn {
   padding: 12px 24px;
   border-radius: 25px;
@@ -259,9 +239,6 @@ body.light {
   border: 1px solid var(--accent);
   color: var(--accent);
 }
-
-/* ABOUT */
-
 
 .profile-img {
   width: 140px;
@@ -287,7 +264,6 @@ body.light {
   font-size: 13px;
 }
 
-/* SKILLS CONTAINER (UI CODER STYLING) */
 .skills-container {
   margin-top: 35px;
   text-align: left;
@@ -360,14 +336,12 @@ body.light .chips span {
   box-shadow: 0 4px 10px rgba(var(--shadow-rgb), 0.2);
 }
 
-/* ABOUT GRID */
 .about-grid {
   margin-top: 40px;
   display: grid;
   gap: 30px;
 }
 
-/* TERMINAL/EDITOR WINDOW STYLINGS */
 .editor-window {
   border-radius: 16px;
   overflow: hidden;
@@ -424,7 +398,6 @@ body.light .chips span {
   color: #e5c07b;
 }
 
-/* Syntax Highlighting */
 .code-block {
   margin: 0;
   white-space: pre-wrap;
@@ -432,10 +405,9 @@ body.light .chips span {
   font-family: inherit;
 }
 
-.code-block .key { color: #e06c75; } /* JSON Key */
-.code-block .val { color: #98c379; } /* JSON Value */
+.code-block .key { color: #e06c75; } 
+.code-block .val { color: #98c379; } 
 
-/* Experience JS Terminal */
 .exp-terminal {
   display: flex;
   flex-direction: column;
@@ -448,17 +420,17 @@ body.light .chips span {
 }
 
 .exp-role {
-  color: #c678dd; /* JS Keyword */
+  color: #c678dd; 
   font-weight: 600;
   margin-bottom: 5px;
 }
 
 .exp-role .highlight {
-  color: #61afef; /* Variable value */
+  color: #61afef; 
 }
 
 .exp-desc {
-  color: #5c6370; /* JS Comment */
+  color: #5c6370; 
   font-style: italic;
   font-size: 12.5px;
   margin-bottom: 5px;
@@ -469,10 +441,9 @@ body.light .chips span {
 }
 
 .exp-tech .str {
-  color: #98c379; /* JS String */
+  color: #98c379; 
 }
 
-/* Adaptive Light Theme adjustments */
 body.light .editor-window {
   background: rgba(240, 242, 245, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -502,7 +473,6 @@ body.light .exp-tech .str { color: #50a14f; }
   margin-top: 5%;
 }
 
-/* PROJECT GRID */
 .project-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -510,14 +480,13 @@ body.light .exp-tech .str { color: #50a14f; }
   margin-top: 40px;
 }
 
-/* PROJECT CARD */
 .project {
   display: flex;
   flex-direction: column;
   height: 100%;
   border-radius: 20px;
   overflow: hidden;
-  padding: 0 !important; /* Reset padding to let image fill the top */
+  padding: 0 !important; 
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
   background: rgba(255, 255, 255, 0.05);
 }
@@ -595,7 +564,6 @@ body.light .project-content p {
   color: #555;
 }
 
-/* TAGS */
 .tags {
   margin-top: 5px;
   display: flex;
@@ -613,7 +581,6 @@ body.light .project-content p {
   letter-spacing: 0.3px;
 }
 
-/* LINKS */
 .project-links {
   margin-top: 20px;
   display: flex;
@@ -640,7 +607,6 @@ body.light .project-content p {
   transform: translateY(-2px);
 }
 
-/* CONTACT SECTION */
 .contact-subtitle {
   color: #aaa;
   margin: 15px 0 40px;
@@ -668,7 +634,6 @@ body.light .project-content p {
   }
 }
 
-/* Info Card styling */
 .info-card {
   padding: 35px 25px;
   border-radius: 20px;
@@ -721,7 +686,6 @@ body.light .info-card p {
   color: var(--accent);
 }
 
-/* Social Toolbar */
 .social-links-grid {
   display: flex;
   justify-content: center;
@@ -768,7 +732,6 @@ body.light .social-links-grid a {
   transform: scale(1.1);
 }
 
-/* FOOTER */
 footer {
   margin-top: 80px;
   padding: 25px 8%;
@@ -785,7 +748,6 @@ footer {
   text-align: center;
 }
 
-/* MOBILE RESPONSIVE */
 @media (max-width: 600px) {
   footer {
     flex-direction: column;
@@ -809,7 +771,6 @@ footer {
   }
 }
 
-/* DESKTOP */
 @media (min-width: 768px) {
   .contact-wrapper {
     grid-template-columns: 1fr 1fr;
@@ -825,7 +786,6 @@ footer {
   }
 }
 
-/* MOBILE NAV */
 @media (max-width: 768px) {
   .drop-text span {
     font-size: 30px;
@@ -874,7 +834,6 @@ footer {
   }
 }
 
-/* INQUIRY MODAL STYLING */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1044,9 +1003,6 @@ body.light .form-group select option {
   margin-top: 10px;
 }
 
-/* ==================================================
-   DYNAMIC SPOTLIGHT CARDS
-================================================== */
 .project {
   position: relative;
 }
@@ -1056,7 +1012,7 @@ body.light .form-group select option {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1.5px; /* The border width */
+  padding: 1.5px; 
   background: radial-gradient(
     400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
     rgba(var(--shadow-rgb), 0.35),
@@ -1076,10 +1032,6 @@ body.light .form-group select option {
   opacity: 1;
 }
 
-
-/* ==================================================
-   INFINITE TECH STACK MARQUEE
-================================================== */
 .tech-marquee-wrapper {
   overflow: hidden;
   width: 100%;
@@ -1144,10 +1096,6 @@ body.light .tech-marquee-item {
   100% { transform: translateX(-50%); }
 }
 
-
-/* ==================================================
-   DYNAMIC STATS COUNTERS
-================================================== */
 .stats-container {
   margin-top: 45px;
   display: grid;
@@ -1161,7 +1109,7 @@ body.light .tech-marquee-item {
 
 @media (min-width: 768px) {
   .stats-container {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 

@@ -5,7 +5,6 @@
 const toggle = document.getElementById("toggle");
 const body = document.body;
 
-// Load saved theme or default to system dark preference
 const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
 body.classList.remove("light", "dark");
 body.classList.add(savedTheme);
@@ -16,7 +15,7 @@ if (toggle) {
   toggle.addEventListener("click", () => {
     const isCurrentlyDark = body.classList.contains("dark");
     const newTheme = isCurrentlyDark ? "light" : "dark";
-    
+
     body.classList.replace(isCurrentlyDark ? "dark" : "light", newTheme);
     localStorage.setItem("portfolio-theme", newTheme);
     toggle.textContent = newTheme === "dark" ? "🌙" : "☀️";
@@ -42,14 +41,12 @@ if (menuBtn && navLinks) {
     toggleMobileMenu();
   });
 
-  // Collapse menu automatically when clicking any link
   navLinks.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       toggleMobileMenu(false);
     });
   });
 
-  // Close menu if user clicks outside the header bar
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".nav") && navLinks.classList.contains("active")) {
       toggleMobileMenu(false);
@@ -70,7 +67,7 @@ let bubbleCount = 45;
 let mouse = {
   x: null,
   y: null,
-  radius: 120 // Interaction circle
+  radius: 120
 };
 
 window.addEventListener("mousemove", (event) => {
@@ -208,7 +205,6 @@ const modalProjectName = document.getElementById("modalProjectName");
 const inquiryForm = document.getElementById("inquiryForm");
 const closeModal = document.getElementById("closeModal");
 
-// Open modal on Inquire click
 document.querySelectorAll(".inquire-btn").forEach(btn => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -220,7 +216,6 @@ document.querySelectorAll(".inquire-btn").forEach(btn => {
   });
 });
 
-// Close modal
 const hideModal = () => {
   inquiryModal.classList.remove("active");
   inquiryModal.setAttribute("aria-hidden", "true");
@@ -230,40 +225,36 @@ const hideModal = () => {
 
 if (closeModal) closeModal.addEventListener("click", hideModal);
 
-// Close on overlay click
 if (inquiryModal) {
   inquiryModal.addEventListener("click", (e) => {
     if (e.target === inquiryModal) hideModal();
   });
 }
 
-// Close on Escape key
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && inquiryModal.classList.contains("active")) {
     hideModal();
   }
 });
 
-// Form Submission (Generate serverless Web3Forms background API request)
 if (inquiryForm) {
   inquiryForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    
-    // Get the submit button and show loading state
+
     const submitBtn = inquiryForm.querySelector(".submit-btn");
     const originalBtnHTML = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Sending Inquiry...`;
-    
+
     const clientName = document.getElementById("clientName").value.trim();
     const project = modalProjectName.textContent;
     const inquirySelect = document.getElementById("inquiryType");
     const inquiryTypeText = inquirySelect.options[inquirySelect.selectedIndex].text;
     const clientMsg = document.getElementById("clientMsg").value.trim();
-    
+
     // Web3Forms configuration
     const accessKey = "1b27b77f-514c-474f-94b1-61bbe3c3c9ef";
-    
+
     const formData = {
       access_key: accessKey,
       name: clientName,
@@ -273,7 +264,7 @@ if (inquiryForm) {
       message: clientMsg || "No custom message provided.",
       from_name: "Portfolio Inquiry System"
     };
-    
+
     // Send background POST request
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -283,31 +274,29 @@ if (inquiryForm) {
       },
       body: JSON.stringify(formData)
     })
-    .then(async (response) => {
-      let json = await response.json();
-      if (response.status === 200 || json.success) {
-        showToast("Success! Your inquiry has been sent directly to Sayista. 🚀", "success");
-        hideModal();
-      } else {
-        console.log(response);
-        showToast(json.message || "Failed to send inquiry! Please check Access Key.", "error");
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      showToast("Network error! Please try again later.", "error");
-    })
-    .finally(() => {
-      // Restore button state
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnHTML;
-    });
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status === 200 || json.success) {
+          showToast("Success! Your inquiry has been sent directly to Sayista. 🚀", "success");
+          hideModal();
+        } else {
+          console.log(response);
+          showToast(json.message || "Failed to send inquiry! Please check Access Key.", "error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        showToast("Network error! Please try again later.", "error");
+      })
+      .finally(() => {
+        // Restore button state
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      });
   });
 }
 
-// Elegant Toast Notification System
 function showToast(message, type = "success") {
-  // Create toast container if not exists
   let container = document.getElementById("toast-container");
   if (!container) {
     container = document.createElement("div");
@@ -322,7 +311,7 @@ function showToast(message, type = "success") {
     container.style.pointerEvents = "none";
     document.body.appendChild(container);
   }
-  
+
   const toast = document.createElement("div");
   toast.className = `toast-alert ${type}`;
   toast.style.background = type === "success" ? "rgba(25, 135, 84, 0.95)" : "rgba(220, 53, 69, 0.95)";
@@ -341,18 +330,16 @@ function showToast(message, type = "success") {
   toast.style.display = "flex";
   toast.style.alignItems = "center";
   toast.style.gap = "10px";
-  
+
   toast.innerHTML = `<i class="${type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-triangle-exclamation'}"></i> <span>${message}</span>`;
-  
+
   container.appendChild(toast);
-  
-  // Trigger animation reflow
+
   toast.offsetHeight;
-  
+
   toast.style.opacity = "1";
   toast.style.transform = "translateY(0)";
-  
-  // Auto remove toast
+
   setTimeout(() => {
     toast.style.opacity = "0";
     toast.style.transform = "translateY(-20px)";
@@ -404,7 +391,7 @@ if (statsSection && counters.length > 0) {
         if (progress < 1) {
           requestAnimationFrame(animate);
         } else {
-          counter.textContent = target; // Safeguard exact target value
+          counter.textContent = target;
         }
       };
 
@@ -416,11 +403,11 @@ if (statsSection && counters.length > 0) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         runCounters();
-        obs.unobserve(entry.target); // De-register observer once triggered
+        obs.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.25 // Trigger when 25% of stats block is visible
+    threshold: 0.25
   });
 
   observer.observe(statsSection);
