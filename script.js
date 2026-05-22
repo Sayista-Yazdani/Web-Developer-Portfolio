@@ -362,4 +362,69 @@ function showToast(message, type = "success") {
   }, 4000);
 }
 
+/* ==================================================
+   DYNAMIC SPOTLIGHT CARDS MOUSE TRACKER
+================================================== */
+document.querySelectorAll(".project").forEach(card => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  });
+});
+
+
+/* ==================================================
+   SCROLL-TRIGGERED STATS COUNTERS
+================================================== */
+const statsSection = document.querySelector(".stats-container");
+const counters = document.querySelectorAll(".stat-number");
+
+if (statsSection && counters.length > 0) {
+  const runCounters = () => {
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute("data-target"), 10);
+      if (isNaN(target)) return;
+
+      const duration = 1600; // 1.6 seconds transition duration
+      const startTime = performance.now();
+
+      const animate = (currentTime) => {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+
+        // Quadratic Easing-Out function
+        const easeProgress = progress * (2 - progress);
+        const currentValue = Math.floor(easeProgress * target);
+
+        counter.textContent = currentValue;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          counter.textContent = target; // Safeguard exact target value
+        }
+      };
+
+      requestAnimationFrame(animate);
+    });
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runCounters();
+        obs.unobserve(entry.target); // De-register observer once triggered
+      }
+    });
+  }, {
+    threshold: 0.25 // Trigger when 25% of stats block is visible
+  });
+
+  observer.observe(statsSection);
+}
+
+
 

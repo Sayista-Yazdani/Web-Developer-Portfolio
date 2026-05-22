@@ -1043,3 +1043,166 @@ body.light .form-group select option {
   font-weight: 600;
   margin-top: 10px;
 }
+
+/* ==================================================
+   DYNAMIC SPOTLIGHT CARDS
+================================================== */
+.project {
+  position: relative;
+}
+
+.project::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px; /* The border width */
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(var(--shadow-rgb), 0.35),
+    transparent 50%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.project:hover::before {
+  opacity: 1;
+}
+
+
+/* ==================================================
+   INFINITE TECH STACK MARQUEE
+================================================== */
+.tech-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 18px 0;
+  margin-top: 35px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+body.light .tech-marquee-wrapper {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 60px;
+  animation: marquee 28s linear infinite;
+}
+
+.tech-marquee-wrapper:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+.tech-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-dark);
+  opacity: 0.65;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+}
+
+body.light .tech-marquee-item {
+  color: var(--text-light);
+}
+
+.tech-marquee-item i {
+  font-size: 22px;
+  color: var(--accent);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tech-marquee-item:hover {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.05);
+}
+
+.tech-marquee-item:hover i {
+  transform: rotate(360deg) scale(1.15);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+/* ==================================================
+   DYNAMIC STATS COUNTERS
+================================================== */
+.stats-container {
+  margin-top: 45px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  padding: 35px 25px;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+@media (min-width: 768px) {
+  .stats-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-3px);
+}
+
+.stat-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.stat-number {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.stat-label {
+  font-size: 11.5px;
+  color: #aaa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  line-height: 1.3;
+}
+
+body.light .stat-label {
+  color: #555;
+}
+
