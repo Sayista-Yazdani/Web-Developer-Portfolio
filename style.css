@@ -8,6 +8,11 @@
   --accent-pink-dark: #ff7aa2;  /* Glowing premium pink for dark mode */
   --accent-pink-light: #d81b60; /* High contrast crimson-pink for light mode */
   --accent: var(--accent-pink-dark);
+  --shadow-rgb: 255, 122, 162;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --nav-mobile-bg: rgba(11, 11, 15, 0.96);
+  --nav-mobile-text: #f8f9fa;
 }
 
 /* RESET */
@@ -37,26 +42,36 @@ html::-webkit-scrollbar-thumb {
 
 body.dark {
   --accent: var(--accent-pink-dark);
+  --shadow-rgb: 255, 122, 162;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --nav-mobile-bg: rgba(11, 11, 15, 0.96);
+  --nav-mobile-text: #f8f9fa;
   background: linear-gradient(120deg, #0b0b0f, #141420);
   color: var(--text-dark);
 }
 
 body.light {
   --accent: var(--accent-pink-light);
+  --shadow-rgb: 216, 27, 96; /* Elegant darker crimson glow for light theme */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --nav-mobile-bg: rgba(255, 255, 255, 0.96);
+  --nav-mobile-text: #121214;
   background: var(--bg-light);
   color: var(--text-light);
 }
 
 /* GLASS */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--glass-bg);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--glass-border);
   border-radius: 20px;
 }
 
 .glass:hover {
-  box-shadow: 0 0 35px rgba(255, 122, 162, 0.25);
+  box-shadow: 0 0 35px rgba(var(--shadow-rgb), 0.25);
 }
 
 /* NAV */
@@ -255,7 +270,7 @@ body.light {
   object-fit: cover;
   margin-bottom: 20px;
   border: 3px solid var(--accent);
-  box-shadow: 0 0 25px rgba(255, 122, 162, 0.4);
+  box-shadow: 0 0 25px rgba(var(--shadow-rgb), 0.4);
 }
 
 .text {
@@ -310,7 +325,7 @@ body.light {
 
 .skill-group:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(255, 122, 162, 0.15);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.15);
 }
 
 .skill-group h5 {
@@ -342,7 +357,7 @@ body.light .chips span {
   background: var(--accent);
   color: #000 !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(255, 122, 162, 0.2);
+  box-shadow: 0 4px 10px rgba(var(--shadow-rgb), 0.2);
 }
 
 /* ABOUT GRID */
@@ -428,7 +443,7 @@ body.light .chips span {
 }
 
 .exp-item {
-  border-left: 2px solid rgba(255, 122, 162, 0.3);
+  border-left: 2px solid rgba(var(--shadow-rgb), 0.3);
   padding-left: 15px;
 }
 
@@ -509,7 +524,7 @@ body.light .exp-tech .str { color: #50a14f; }
 
 .project:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(255, 122, 162, 0.25);
+  box-shadow: 0 12px 40px rgba(var(--shadow-rgb), 0.25);
 }
 
 .project-img-container {
@@ -668,7 +683,7 @@ body.light .project-content p {
 
 .info-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(255, 122, 162, 0.2);
+  box-shadow: 0 10px 30px rgba(var(--shadow-rgb), 0.2);
 }
 
 .info-icon {
@@ -744,7 +759,7 @@ body.light .social-links-grid a {
 .social-links-grid a:hover {
   background: var(--accent);
   transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(255, 122, 162, 0.3);
+  box-shadow: 0 8px 25px rgba(var(--shadow-rgb), 0.3);
   border-color: var(--accent);
 }
 
@@ -830,22 +845,28 @@ footer {
     top: 70px;
     left: 0;
     width: 100%;
-    /* background: rgba(11, 11, 15, 0.95); */
-     background-color: var(--accent);
-    backdrop-filter: blur(10px);
+    background-color: var(--nav-mobile-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     display: none;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
     border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   }
 
   .nav nav a,
   .nav nav button {
     margin: 10px 0;
     font-size: 16px;
-    color: white;
-   
+    color: var(--nav-mobile-text);
+    transition: color 0.3s ease;
+  }
+  
+  .nav nav a:hover {
+    color: var(--accent);
   }
 
   .nav nav.active {
@@ -883,10 +904,10 @@ footer {
   width: 90%;
   max-width: 500px;
   background: rgba(20, 20, 28, 0.85);
-  border: 1px solid rgba(255, 122, 162, 0.2);
+  border: 1px solid rgba(var(--shadow-rgb), 0.2);
   border-radius: 24px;
   padding: 30px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 122, 162, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(var(--shadow-rgb), 0.1);
   transform: scale(0.9) translateY(20px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -999,8 +1020,8 @@ body.light .form-group textarea {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent);
-  background: rgba(255, 122, 162, 0.03);
-  box-shadow: 0 0 10px rgba(255, 122, 162, 0.15);
+  background: rgba(var(--shadow-rgb), 0.03);
+  box-shadow: 0 0 10px rgba(var(--shadow-rgb), 0.15);
 }
 
 .form-group select option {

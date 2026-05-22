@@ -1,44 +1,66 @@
 
 /* ===========================
-    THEME TOGGLER
+    THEME TOGGLER & PERSISTENCE
 =========================== */
-
-
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-
-menuBtn.addEventListener("click", () => {
-  const isActive = navLinks.classList.toggle("active");
-  menuBtn.setAttribute("aria-expanded", isActive ? "true" : "false");
-});
-
-
-
 const toggle = document.getElementById("toggle");
 const body = document.body;
 
-// Force dark mode on every load and refresh
-body.className = "dark";
-if (toggle) toggle.textContent = "🌙";
+// Load saved theme or default to system dark preference
+const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
+body.classList.remove("light", "dark");
+body.classList.add(savedTheme);
 
 if (toggle) {
-  toggle.addEventListener("click", () => {
-    body.classList.toggle("light");
-    body.classList.toggle("dark");
+  toggle.textContent = savedTheme === "dark" ? "🌙" : "☀️";
 
-    toggle.textContent = body.classList.contains("dark") ? "🌙" : "☀️";
+  toggle.addEventListener("click", () => {
+    const isCurrentlyDark = body.classList.contains("dark");
+    const newTheme = isCurrentlyDark ? "light" : "dark";
+    
+    body.classList.replace(isCurrentlyDark ? "dark" : "light", newTheme);
+    localStorage.setItem("portfolio-theme", newTheme);
+    toggle.textContent = newTheme === "dark" ? "🌙" : "☀️";
   });
 }
 
 
+/* ===========================
+    MOBILE NAV CONTROLLER
+=========================== */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
 
+const toggleMobileMenu = (forceState) => {
+  const willBeActive = typeof forceState === "boolean" ? forceState : !navLinks.classList.contains("active");
+  navLinks.classList.toggle("active", willBeActive);
+  menuBtn.setAttribute("aria-expanded", willBeActive ? "true" : "false");
+};
 
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMobileMenu();
+  });
+
+  // Collapse menu automatically when clicking any link
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      toggleMobileMenu(false);
+    });
+  });
+
+  // Close menu if user clicks outside the header bar
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav") && navLinks.classList.contains("active")) {
+      toggleMobileMenu(false);
+    }
+  });
+}
 
 
 /* ===========================
-   HERO BUBBLE FLOW ANIMATION
+   HERO BUBBLE FLOW ANIMATION (Retina-Crisp & Debounced)
 =========================== */
-
 const canvas = document.getElementById("bubbleCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -63,11 +85,32 @@ window.addEventListener("mouseleave", () => {
 });
 
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = document.getElementById("home").offsetHeight;
+  const dpr = window.devicePixelRatio || 1;
+  const homeSection = document.getElementById("home");
+  const logicalWidth = window.innerWidth;
+  const logicalHeight = homeSection ? homeSection.offsetHeight : 500;
+
+  // Scale backing store coordinates to match screen quality
+  canvas.width = logicalWidth * dpr;
+  canvas.height = logicalHeight * dpr;
+
+  // Scale back visual sizing with CSS
+  canvas.style.width = `${logicalWidth}px`;
+  canvas.style.height = `${logicalHeight}px`;
+
+  ctx.resetTransform();
+  ctx.scale(dpr, dpr);
 }
 
-window.addEventListener("resize", resizeCanvas);
+// Debounced Window Resize Handler for Fluid Performance
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    resizeCanvas();
+  }, 150);
+});
+
 resizeCanvas();
 
 class Bubble {
@@ -76,8 +119,12 @@ class Bubble {
   }
 
   reset() {
-    this.x = Math.random() * canvas.width;
-    this.y = canvas.height + Math.random() * 100;
+    const dpr = window.devicePixelRatio || 1;
+    const logicalWidth = canvas.width / dpr;
+    const logicalHeight = canvas.height / dpr;
+
+    this.x = Math.random() * logicalWidth;
+    this.y = logicalHeight + Math.random() * 100;
     this.radius = Math.random() * 5 + 2;
     this.baseSpeed = Math.random() * 0.7 + 0.3;
     this.speed = this.baseSpeed;
@@ -93,6 +140,8 @@ class Bubble {
 
   update() {
     this.y -= this.speed;
+    const dpr = window.devicePixelRatio || 1;
+    const logicalWidth = canvas.width / dpr;
 
     // Interactive repulsion engine
     if (mouse.x !== null && mouse.y !== null) {
@@ -111,7 +160,7 @@ class Bubble {
       }
     }
 
-    if (this.y + this.radius < 0 || this.x < 0 || this.x > canvas.width) {
+    if (this.y + this.radius < 0 || this.x < 0 || this.x > logicalWidth) {
       this.reset();
     }
   }
@@ -127,7 +176,11 @@ function initBubbles() {
 let animationId;
 
 function animateBubbles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const dpr = window.devicePixelRatio || 1;
+  const logicalWidth = canvas.width / dpr;
+  const logicalHeight = canvas.height / dpr;
+
+  ctx.clearRect(0, 0, logicalWidth, logicalHeight);
   bubbles.forEach(bubble => {
     bubble.update();
     bubble.draw();
