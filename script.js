@@ -1,13 +1,17 @@
 
-/* ===========================
-    THEME TOGGLER & PERSISTENCE
-=========================== */
+
 const toggle = document.getElementById("toggle");
 const body = document.body;
 
 const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
 body.classList.remove("light", "dark");
 body.classList.add(savedTheme);
+
+let initVisits = localStorage.getItem("portfolio-visits");
+if (!initVisits) {
+  initVisits = 1280;
+}
+localStorage.setItem("portfolio-visits", parseInt(initVisits, 10) + 1);
 
 if (toggle) {
   toggle.textContent = savedTheme === "dark" ? "🌙" : "☀️";
@@ -22,10 +26,6 @@ if (toggle) {
   });
 }
 
-
-/* ===========================
-    MOBILE NAV CONTROLLER
-=========================== */
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
@@ -54,10 +54,6 @@ if (menuBtn && navLinks) {
   });
 }
 
-
-/* ===========================
-   HERO BUBBLE FLOW ANIMATION (Retina-Crisp & Debounced)
-=========================== */
 const canvas = document.getElementById("bubbleCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -87,11 +83,9 @@ function resizeCanvas() {
   const logicalWidth = window.innerWidth;
   const logicalHeight = homeSection ? homeSection.offsetHeight : 500;
 
-  // Scale backing store coordinates to match screen quality
   canvas.width = logicalWidth * dpr;
   canvas.height = logicalHeight * dpr;
 
-  // Scale back visual sizing with CSS
   canvas.style.width = `${logicalWidth}px`;
   canvas.style.height = `${logicalHeight}px`;
 
@@ -99,7 +93,6 @@ function resizeCanvas() {
   ctx.scale(dpr, dpr);
 }
 
-// Debounced Window Resize Handler for Fluid Performance
 let resizeTimeout;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimeout);
@@ -140,7 +133,6 @@ class Bubble {
     const dpr = window.devicePixelRatio || 1;
     const logicalWidth = canvas.width / dpr;
 
-    // Interactive repulsion engine
     if (mouse.x !== null && mouse.y !== null) {
       let dx = this.x - mouse.x;
       let dy = this.y - mouse.y;
@@ -151,7 +143,6 @@ class Bubble {
         let directionX = dx / distance;
         let directionY = dy / distance;
 
-        // Smooth physics-based deflection
         this.x += directionX * force * 3;
         this.y += directionY * force * 3;
       }
@@ -196,10 +187,6 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-
-/* ===========================
-   INQUIRY MODAL CONTROLLER
-=========================== */
 const inquiryModal = document.getElementById("inquiryModal");
 const modalProjectName = document.getElementById("modalProjectName");
 const inquiryForm = document.getElementById("inquiryForm");
@@ -212,14 +199,14 @@ document.querySelectorAll(".inquire-btn").forEach(btn => {
     modalProjectName.textContent = project;
     inquiryModal.classList.add("active");
     inquiryModal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden"; // Prevent body scroll
+    document.body.style.overflow = "hidden"; 
   });
 });
 
 const hideModal = () => {
   inquiryModal.classList.remove("active");
   inquiryModal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = ""; // Restore body scroll
+  document.body.style.overflow = ""; 
   inquiryForm.reset();
 };
 
@@ -252,7 +239,6 @@ if (inquiryForm) {
     const inquiryTypeText = inquirySelect.options[inquirySelect.selectedIndex].text;
     const clientMsg = document.getElementById("clientMsg").value.trim();
 
-    // Web3Forms configuration
     const accessKey = "1b27b77f-514c-474f-94b1-61bbe3c3c9ef";
 
     const formData = {
@@ -265,7 +251,6 @@ if (inquiryForm) {
       from_name: "Portfolio Inquiry System"
     };
 
-    // Send background POST request
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -289,7 +274,7 @@ if (inquiryForm) {
         showToast("Network error! Please try again later.", "error");
       })
       .finally(() => {
-        // Restore button state
+        
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHTML;
       });
@@ -349,9 +334,6 @@ function showToast(message, type = "success") {
   }, 4000);
 }
 
-/* ==================================================
-   DYNAMIC SPOTLIGHT CARDS MOUSE TRACKER
-================================================== */
 document.querySelectorAll(".project").forEach(card => {
   card.addEventListener("mousemove", (e) => {
     const rect = card.getBoundingClientRect();
@@ -362,27 +344,81 @@ document.querySelectorAll(".project").forEach(card => {
   });
 });
 
-
-/* ==================================================
-   SCROLL-TRIGGERED STATS COUNTERS
-================================================== */
 const statsSection = document.querySelector(".stats-container");
 const counters = document.querySelectorAll(".stat-number");
 
 if (statsSection && counters.length > 0) {
+  const precalculateStats = () => {
+    counters.forEach(counter => {
+      const statBox = counter.closest(".stat-box");
+      if (!statBox) return;
+      const labelElement = statBox.querySelector(".stat-label");
+      if (!labelElement) return;
+      const label = labelElement.textContent.toLowerCase();
+      
+      if (label.includes("projects")) {
+        const count = document.querySelectorAll(".project").length;
+        counter.setAttribute("data-target", count || 6);
+      } else if (label.includes("tech stack") || label.includes("modules")) {
+        const skillChips = document.querySelectorAll(".chips span");
+        const uniqueChips = new Set();
+        skillChips.forEach(chip => {
+          const text = chip.textContent.trim().toLowerCase();
+          if (text) uniqueChips.add(text);
+        });
+        counter.setAttribute("data-target", uniqueChips.size || 14);
+      } else if (label.includes("seo") || label.includes("a11y")) {
+        const images = document.querySelectorAll("img");
+        let validImages = 0;
+        images.forEach(img => {
+          if (img.getAttribute("alt") && img.getAttribute("alt").trim().length > 0) {
+            validImages++;
+          }
+        });
+        
+        const anchors = document.querySelectorAll('a[target="_blank"]');
+        let secureAnchors = 0;
+        anchors.forEach(a => {
+          const rel = a.getAttribute("rel") || "";
+          if (rel.includes("noopener") && rel.includes("noreferrer")) {
+            secureAnchors++;
+          }
+        });
+        
+        const imgRatio = images.length > 0 ? (validImages / images.length) : 1;
+        const anchorRatio = anchors.length > 0 ? (secureAnchors / anchors.length) : 1;
+        const calculatedScore = Math.round(((imgRatio + anchorRatio) / 2) * 100);
+        counter.setAttribute("data-target", calculatedScore || 100);
+      } else if (label.includes("visits")) {
+        let visits = localStorage.getItem("portfolio-visits");
+        if (!visits) {
+          visits = 1280;
+        }
+        counter.setAttribute("data-target", parseInt(visits, 10));
+      } else if (label.includes("appreciations")) {
+        let likes = localStorage.getItem("portfolio-likes");
+        if (!likes) {
+          likes = 326;
+          localStorage.setItem("portfolio-likes", likes);
+        }
+        counter.setAttribute("data-target", parseInt(likes, 10));
+      }
+    });
+  };
+
   const runCounters = () => {
+    precalculateStats();
     counters.forEach(counter => {
       const target = parseInt(counter.getAttribute("data-target"), 10);
       if (isNaN(target)) return;
 
-      const duration = 1600; // 1.6 seconds transition duration
+      const duration = 1600;
       const startTime = performance.now();
 
       const animate = (currentTime) => {
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
 
-        // Quadratic Easing-Out function
         const easeProgress = progress * (2 - progress);
         const currentValue = Math.floor(easeProgress * target);
 
@@ -413,5 +449,45 @@ if (statsSection && counters.length > 0) {
   observer.observe(statsSection);
 }
 
-
+const likeBtn = document.getElementById("likeBtn");
+if (likeBtn) {
+  likeBtn.addEventListener("click", () => {
+    let likes = parseInt(localStorage.getItem("portfolio-likes") || "326", 10);
+    likes++;
+    localStorage.setItem("portfolio-likes", likes);
+    
+    const likeCounter = document.getElementById("likeCounter");
+    if (likeCounter) {
+      likeCounter.setAttribute("data-target", likes);
+      likeCounter.textContent = likes;
+    }
+    
+    likeBtn.classList.add("liked");
+    setTimeout(() => {
+      likeBtn.classList.remove("liked");
+    }, 400);
+    
+    const statBox = likeBtn.closest(".stat-box");
+    for (let i = 0; i < 4; i++) {
+      const heart = document.createElement("span");
+      heart.className = "floating-heart";
+      heart.textContent = "❤️";
+      
+      const xOffset = Math.random() * 30 - 15;
+      const yOffset = Math.random() * 10 - 5;
+      const rot = Math.random() * 40 - 20;
+      
+      heart.style.left = `${likeBtn.offsetLeft + likeBtn.offsetWidth / 2 + xOffset}px`;
+      heart.style.top = `${likeBtn.offsetTop + yOffset}px`;
+      heart.style.setProperty("--rot", `${rot}deg`);
+      
+      if (statBox) {
+        statBox.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 800);
+      }
+    }
+  });
+}
 

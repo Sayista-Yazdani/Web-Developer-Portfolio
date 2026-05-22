@@ -1154,3 +1154,58 @@ body.light .stat-label {
   color: #555;
 }
 
+.relative-box {
+  position: relative;
+}
+
+.like-btn-heart {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+  user-select: none;
+  outline: none;
+}
+
+.like-btn-heart:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px rgba(255, 75, 110, 0.6));
+}
+
+.like-btn-heart:active {
+  transform: scale(0.9);
+}
+
+.like-btn-heart.liked {
+  animation: heartPulse 0.4s ease-out;
+  filter: drop-shadow(0 0 12px rgba(255, 75, 110, 0.8));
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1.2); }
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 1.2rem;
+  pointer-events: none;
+  user-select: none;
+  animation: floatUp 0.8s ease-out forwards;
+  z-index: 10;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80px) scale(0.6) rotate(var(--rot, 15deg));
+    opacity: 0;
+  }
+}
+
