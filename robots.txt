@@ -2,13 +2,9 @@
 # Author: Sayista Yazdani
 # Last Updated: 2026-05-19
 
-# Allow all search engines to crawl everything
 User-agent: *
 Allow: /
-Allow: /image/         # Enabled so portfolio preview images & profile pic index on Google!
+Allow: /image/         
 
-# Disallow backup folders
 Disallow: /backup/
-
-# Point to sitemap
 Sitemap: https://sayista-yazdani.github.io/Web-Developer-Portfolio/sitemap.xml
