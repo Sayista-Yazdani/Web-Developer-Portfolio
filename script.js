@@ -368,27 +368,70 @@ if (statsSection && counters.length > 0) {
         });
         counter.setAttribute("data-target", uniqueChips.size || 14);
       } else if (label.includes("seo") || label.includes("a11y")) {
+        let score = 0;
+        const titleEl = document.querySelector("title");
+        if (titleEl && titleEl.textContent.trim().length > 0) {
+          score += 15;
+        }
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          const descLen = metaDesc.getAttribute("content") ? metaDesc.getAttribute("content").trim().length : 0;
+          if (descLen >= 50 && descLen <= 300) {
+            score += 15;
+          } else if (descLen > 0) {
+            score += 10;
+          }
+        }
+        const htmlEl = document.documentElement;
+        if (htmlEl && htmlEl.getAttribute("lang")) {
+          score += 10;
+        }
+        const h1Count = document.querySelectorAll("h1").length;
+        if (h1Count === 1) {
+          score += 15;
+        } else if (h1Count > 1) {
+          score += 5;
+        }
         const images = document.querySelectorAll("img");
-        let validImages = 0;
-        images.forEach(img => {
-          if (img.getAttribute("alt") && img.getAttribute("alt").trim().length > 0) {
-            validImages++;
-          }
-        });
-        
+        if (images.length === 0) {
+          score += 20;
+        } else {
+          let validImages = 0;
+          images.forEach(img => {
+            if (img.getAttribute("alt") && img.getAttribute("alt").trim().length > 0) {
+              validImages++;
+            }
+          });
+          score += Math.round((validImages / images.length) * 20);
+        }
         const anchors = document.querySelectorAll('a[target="_blank"]');
-        let secureAnchors = 0;
-        anchors.forEach(a => {
-          const rel = a.getAttribute("rel") || "";
-          if (rel.includes("noopener") && rel.includes("noreferrer")) {
-            secureAnchors++;
-          }
-        });
-        
-        const imgRatio = images.length > 0 ? (validImages / images.length) : 1;
-        const anchorRatio = anchors.length > 0 ? (secureAnchors / anchors.length) : 1;
-        const calculatedScore = Math.round(((imgRatio + anchorRatio) / 2) * 100);
-        counter.setAttribute("data-target", calculatedScore || 100);
+        if (anchors.length === 0) {
+          score += 15;
+        } else {
+          let secureAnchors = 0;
+          anchors.forEach(a => {
+            const rel = a.getAttribute("rel") || "";
+            if (rel.includes("noopener") || rel.includes("noreferrer")) {
+              secureAnchors++;
+            }
+          });
+          score += Math.round((secureAnchors / anchors.length) * 15);
+        }
+        const buttons = document.querySelectorAll("button");
+        if (buttons.length === 0) {
+          score += 10;
+        } else {
+          let validButtons = 0;
+          buttons.forEach(btn => {
+            const hasText = btn.textContent.trim().length > 0;
+            const hasLabel = btn.getAttribute("aria-label") && btn.getAttribute("aria-label").trim().length > 0;
+            if (hasText || hasLabel) {
+              validButtons++;
+            }
+          });
+          score += Math.round((validButtons / buttons.length) * 10);
+        }
+        counter.setAttribute("data-target", score);
       } else if (label.includes("visits")) {
         let visits = localStorage.getItem("portfolio-visits");
         if (!visits) {

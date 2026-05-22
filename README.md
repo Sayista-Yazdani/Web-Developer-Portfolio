@@ -17,7 +17,13 @@ This repository houses my fully optimized, highly interactive, and aesthetically
 - 📬 **Serverless Inquire Popup (Micro Modal)**: Custom glassmorphic popups for each project card linked dynamically with **Web3Forms API** for silent background email submission.
 - 🔦 **Dynamic Mouse-Tracking Spotlight Cards**: Modern hover masking on project cards where cursor coordinates paint a glowing neon radial border dynamically.
 - 🎡 **Infinite Tech Stack Marquee (Fluid Carousel)**: Continuous, ultra-smooth horizontal marquee scrolling of technology badges with active pause state on hover and rotational animations.
-- 📊 **Dynamic Live Stats & Reach Outs Counters**: A responsive glassmorphic statistics dashboard featuring scroll-triggered count-up animations. It dynamically calculates active project counts, unique stack elements, and accessibility metrics, alongside a persistent **Reach Outs** counter that increments live upon successful inquiry submissions.
+- 📊 **Dynamic Live Stats & Interactive Analytics Dashboard**: A responsive glassmorphic statistics grid featuring scroll-triggered count-up ease animations. It dynamically calculates and showcases real-time metrics:
+  - **Projects Built**: Scans the active DOM to count and showcase live projects listed.
+  - **Core Tech Stack Modules**: Analyzes unique technology chips currently used in the expertise sections.
+  - **Profile Visits**: Persistent dynamic tracking initializing at `1280` and incrementing live upon each page load using `localStorage`.
+  - **Appreciations (Likes)**: Interactive heart element featuring a scale transition, custom floating hearts particle system, and live storage increments persisting in browser memory.
+  - **Real-Time 7-Point A11y & SEO Audit**: A robust client-side auditing engine that mimics Google Lighthouse, dynamically scoring the active page (0-100%) based on HTML title, meta description validity, `lang` declaration, unique `<h1>` hierarchy, image `alt` compliance, external link security (`noopener noreferrer` on `target="_blank"`), and interactive button accessibility.
+
 
 ---
 
