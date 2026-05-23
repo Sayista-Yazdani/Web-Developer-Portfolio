@@ -526,8 +526,8 @@ gsap.from(".info-card", {
 });
 gsap.from(".social-links-grid a", {
   scrollTrigger: {
-    trigger: ".social-links-grid",
-    start: "top 90%",
+    trigger: "#contact",
+    start: "top 80%",
     toggleActions: "play none none none"
   },
   opacity: 0,
@@ -586,5 +586,9 @@ document.querySelectorAll(".menu-btn, #likeBtn, .social-links-grid a, .nav nav a
       duration: 0.8
     });
   });
+});
+
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh();
 });
 
