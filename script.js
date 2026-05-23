@@ -491,7 +491,8 @@ gsap.from(".social-links-grid a", {
   stagger: 0.1,
   duration: 0.8,
   ease: "back.out(1.7)",
-  delay: 1.2
+  delay: 1.2,
+  clearProps: "transform,opacity"
 });
 gsap.from("#about > *", {
   scrollTrigger: {
