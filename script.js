@@ -357,26 +357,24 @@ if (statsSection && counters.length > 0) {
     counters.forEach(counter => {
       const target = parseInt(counter.getAttribute("data-target"), 10);
       if (isNaN(target)) return;
-
+      const statBox = counter.closest(".stat-box");
+      const labelEl = statBox ? statBox.querySelector(".stat-label") : null;
+      const isSEO = labelEl && (labelEl.textContent.toLowerCase().includes("seo") || labelEl.textContent.toLowerCase().includes("a11y"));
+      const suffix = isSEO ? "" : "+";
       const duration = 1600;
       const startTime = performance.now();
-
       const animate = (currentTime) => {
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
-
         const easeProgress = progress * (2 - progress);
         const currentValue = Math.floor(easeProgress * target);
-
-        counter.textContent = currentValue;
-
+        counter.textContent = currentValue + suffix;
         if (progress < 1) {
           requestAnimationFrame(animate);
         } else {
-          counter.textContent = target;
+          counter.textContent = target + suffix;
         }
       };
-
       requestAnimationFrame(animate);
     });
   };
@@ -405,7 +403,7 @@ if (likeBtn) {
     const likeCounter = document.getElementById("likeCounter");
     if (likeCounter) {
       likeCounter.setAttribute("data-target", likes);
-      likeCounter.textContent = likes;
+      likeCounter.textContent = likes + "+";
     }
 
     likeBtn.classList.add("liked");

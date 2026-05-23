@@ -593,20 +593,37 @@ body.light .project-content p {
 }
 
 .tags {
-  margin-top: 5px;
+  margin-top: 12px;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
-.tags span {
-  font-size: 10.5px;
+.tags i {
+  font-size: 15px;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.tags i:hover {
   background: var(--accent);
   color: #000;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 5px 15px rgba(var(--shadow-rgb), 0.3);
+  border-color: var(--accent);
+}
+
+body.light .tags i {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .project-links {
