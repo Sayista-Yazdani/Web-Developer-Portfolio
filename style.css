@@ -132,7 +132,15 @@ body.light {
   border: none;
   font-size: 26px;
   cursor: pointer;
-  color: inherit;
+  color: var(--text-dark);
+}
+
+body.light .menu-btn {
+  color: var(--text-light);
+}
+
+body.dark .menu-btn {
+  color: var(--text-dark);
 }
 
 .nav nav {
@@ -247,8 +255,8 @@ body.light .desc {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 25px;
+  gap: 15px 25px;
+  margin-top: 30px;
 }
 
 .primary {
@@ -667,7 +675,9 @@ body.light .tags i {
   font-weight: 500;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
+  flex: 1 1 auto;
 }
 
 .project-links a:hover {
@@ -855,6 +865,12 @@ footer {
   }
 
   .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .project-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -870,7 +886,6 @@ footer {
 
   .menu-btn {
     display: block;
-    color: inherit;
   }
 
   .nav nav {
@@ -1314,4 +1329,18 @@ html.lenis-scrolling {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+@media (max-width: 576px) {
+  .hero-btns {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero-btns .btn {
+    width: 100%;
+    max-width: 280px;
+  }
 }
