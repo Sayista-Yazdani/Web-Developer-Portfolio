@@ -487,6 +487,14 @@ gsap.from(".hero-btns a", {
   ease: "back.out(1.7)",
   delay: 1
 });
+gsap.from(".social-links-grid a", {
+  opacity: 0,
+  scale: 0.8,
+  stagger: 0.1,
+  duration: 0.8,
+  ease: "back.out(1.7)",
+  delay: 1.2
+});
 gsap.from("#about > *", {
   scrollTrigger: {
     trigger: "#about",
@@ -510,7 +518,8 @@ gsap.from(".project", {
   scale: 0.96,
   stagger: 0.15,
   duration: 1.2,
-  ease: "power3.out"
+  ease: "power3.out",
+  clearProps: "transform"
 });
 gsap.from(".info-card", {
   scrollTrigger: {
@@ -522,20 +531,10 @@ gsap.from(".info-card", {
   y: 40,
   stagger: 0.15,
   duration: 1,
-  ease: "power3.out"
+  ease: "power3.out",
+  clearProps: "transform"
 });
-gsap.from(".social-links-grid a", {
-  scrollTrigger: {
-    trigger: "#contact",
-    start: "top 80%",
-    toggleActions: "play none none none"
-  },
-  opacity: 0,
-  scale: 0.8,
-  stagger: 0.1,
-  duration: 0.8,
-  ease: "back.out(1.7)"
-});
+
 
 document.querySelectorAll(".project").forEach(card => {
   card.addEventListener("mousemove", (e) => {
@@ -551,6 +550,7 @@ document.querySelectorAll(".project").forEach(card => {
     gsap.to(card, {
       rotationY: percentX * 8,
       rotationX: -percentY * 8,
+      y: -8,
       transformPerspective: 1000,
       ease: "power1.out",
       duration: 0.3
@@ -560,6 +560,7 @@ document.querySelectorAll(".project").forEach(card => {
     gsap.to(card, {
       rotationY: 0,
       rotationX: 0,
+      y: 0,
       ease: "power3.out",
       duration: 0.8
     });
