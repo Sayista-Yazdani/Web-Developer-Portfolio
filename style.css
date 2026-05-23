@@ -221,6 +221,9 @@ body.light {
   color: #aaa;
   margin: 20px 0;
 }
+body.light .desc {
+  color: #444;
+}
 
 .btn {
   padding: 12px 24px;
@@ -655,6 +658,9 @@ body.light .tags i {
 .contact-subtitle {
   color: #aaa;
   margin: 15px 0 40px;
+}
+body.light .contact-subtitle {
+  color: #555;
 }
 
 .contact-container {
