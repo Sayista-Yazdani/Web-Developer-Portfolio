@@ -234,9 +234,21 @@ body.light .desc {
 }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px 24px;
   border-radius: 25px;
   text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
 }
 
 .primary {
@@ -640,7 +652,8 @@ body.light .tags i {
 .project-links {
   margin-top: 20px;
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .project-links a {
@@ -857,7 +870,7 @@ footer {
 
   .menu-btn {
     display: block;
-    color: white;
+    color: inherit;
   }
 
   .nav nav {
