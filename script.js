@@ -565,7 +565,7 @@ document.querySelectorAll(".project").forEach(card => {
   });
 });
 
-document.querySelectorAll(".menu-btn, #likeBtn, .social-links-grid a, .nav nav a").forEach(btn => {
+document.querySelectorAll(".menu-btn, #likeBtn, .social-links-grid a, .nav nav a, .run-btn").forEach(btn => {
   btn.addEventListener("mousemove", (e) => {
     const rect = btn.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -590,4 +590,158 @@ document.querySelectorAll(".menu-btn, #likeBtn, .social-links-grid a, .nav nav a
 window.addEventListener("load", () => {
   ScrollTrigger.refresh();
 });
+
+const typeString = (element, text, speed = 25) => {
+  return new Promise((resolve) => {
+    let index = 0;
+    element.textContent = "";
+    const type = () => {
+      if (index < text.length) {
+        element.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, speed);
+      } else {
+        resolve();
+      }
+    };
+    type();
+  });
+};
+
+const printLines = (element, lines, speed = 150) => {
+  return new Promise((resolve) => {
+    let lineIdx = 0;
+    const print = () => {
+      if (lineIdx < lines.length) {
+        const lineDiv = document.createElement("div");
+        lineDiv.innerHTML = lines[lineIdx];
+        element.appendChild(lineDiv);
+        element.scrollTop = element.scrollHeight;
+        lineIdx++;
+        setTimeout(print, speed);
+      } else {
+        resolve();
+      }
+    };
+    print();
+  });
+};
+
+const setupTerminal = (btnId, cmdId, bodyId, windowEl, commandText, outputLines) => {
+  const btn = document.getElementById(btnId);
+  const cmd = document.getElementById(cmdId);
+  const body = document.getElementById(bodyId);
+  if (!btn || !cmd || !body || !windowEl) return;
+
+  const codeView = windowEl.querySelector(".code-view");
+  const terminalView = windowEl.querySelector(".terminal-view");
+
+  let isRunning = false;
+
+  btn.addEventListener("click", async () => {
+    if (btn.classList.contains("running")) return;
+
+    if (!isRunning) {
+      isRunning = true;
+      btn.disabled = true;
+      btn.classList.add("running");
+      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Running...`;
+
+      body.innerHTML = "";
+      cmd.textContent = "";
+
+      gsap.to(codeView, {
+        opacity: 0,
+        duration: 0.25,
+        onComplete: () => {
+          codeView.style.display = "none";
+          terminalView.style.display = "flex";
+          gsap.fromTo(terminalView, { opacity: 0 }, { opacity: 1, duration: 0.25 });
+        }
+      });
+
+      setTimeout(async () => {
+        await typeString(cmd, commandText, 35);
+        await printLines(body, outputLines, 200);
+
+        btn.disabled = false;
+        btn.classList.remove("running");
+        btn.classList.add("reset");
+        btn.innerHTML = `<i class="fa-solid fa-rotate-left"></i> Reset`;
+      }, 400);
+
+    } else {
+      isRunning = false;
+      btn.classList.remove("reset");
+      btn.innerHTML = `<i class="fa-solid fa-play"></i> Run`;
+
+      gsap.to(terminalView, {
+        opacity: 0,
+        duration: 0.25,
+        onComplete: () => {
+          terminalView.style.display = "none";
+          codeView.style.display = "block";
+          gsap.fromTo(codeView, { opacity: 0 }, { opacity: 1, duration: 0.25 });
+          body.innerHTML = "";
+          cmd.textContent = "";
+        }
+      });
+    }
+  });
+};
+
+const initMockTerminals = () => {
+  const educationWindow = document.querySelector('.editor-window[data-aos="fade-right"]');
+  const experienceWindow = document.querySelector('.editor-window[data-aos="fade-left"]');
+
+  const educationOutput = [
+    `<span class="t-grey">Analyzing JSON schema...</span>`,
+    `[<span class="t-green">INFO</span>] jq parser connected successfully.`,
+    `[`,
+    `  {`,
+    `    <span class="t-cyan">"education"</span>: <span class="t-yellow">"MCA Postgraduate"</span>,`,
+    `    <span class="t-cyan">"institute"</span>: <span class="t-yellow">"SRM IST, Chennai"</span>,`,
+    `    <span class="t-cyan">"status"</span>: <span class="t-green">"First Class, Grade A+"</span>,`,
+    `    <span class="t-cyan">"focus"</span>: <span class="t-green">"Web Engineering & Core Tech"</span>`,
+    `  },`,
+    `  {`,
+    `    <span class="t-cyan">"education"</span>: <span class="t-yellow">"BCA Graduate"</span>,`,
+    `    <span class="t-cyan">"institute"</span>: <span class="t-yellow">"MMHAPU University"</span>,`,
+    `    <span class="t-cyan">"status"</span>: <span class="t-green">"First Class with Honors"</span>,`,
+    `    <span class="t-cyan">"focus"</span>: <span class="t-green">"OOPs Programming & Database"</span>`,
+    `  }`,
+    `]`,
+    `<span class="t-green">✔ JSON parsed successfully! Academic modules compiling cleanly. 🎓</span>`
+  ];
+
+  const experienceOutput = [
+    `<span class="t-grey">Initializing node runtime...</span>`,
+    `[<span class="t-green">SUCCESS</span>] Connected to project deployment pipelines.`,
+    ` `,
+    `🚀 <span class="t-cyan">Tracing Sayista's active builds:</span>`,
+    ` `,
+    `▸ <span class="t-yellow">Gemma Doc Pro</span> [Deployment: Online]`,
+    `  ↳ <span class="t-grey">React, TailwindCSS, Mermaid.js</span>`,
+    `  ↳ Status: <span class="t-green">ONLINE (flowcharts dynamically compiling)</span>`,
+    ` `,
+    `▸ <span class="t-yellow">CatPyqs Prep Portal</span> [Deployment: Online]`,
+    `  ↳ <span class="t-grey">Core PHP, MySQL, JavaScript, OTP API</span>`,
+    `  ↳ Status: <span class="t-green">ONLINE (secure student dashboards active)</span>`,
+    ` `,
+    `▸ <span class="t-yellow">MBA Mock & Result Portal</span> [Deployment: Online]`,
+    `  ↳ <span class="t-grey">PHP MVC, MySQL database schemas</span>`,
+    `  ↳ Status: <span class="t-green">ONLINE (CMS dashboard online)</span>`,
+    ` `,
+    `<span class="t-green">✔ Execution finished. 3/3 custom projects routing smoothly. 🚀</span>`
+  ];
+
+  setupTerminal("runEducation", "cmdEducation", "bodyEducation", educationWindow, "cat Education.json | jq", educationOutput);
+  setupTerminal("runExperience", "cmdExperience", "bodyExperience", experienceWindow, "node Experience.js", experienceOutput);
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initMockTerminals);
+} else {
+  initMockTerminals();
+}
 
