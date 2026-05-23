@@ -483,14 +483,7 @@ gsap.from(".desc", {
   ease: "power3.out",
   delay: 0.8
 });
-gsap.from(".hero-btns a", {
-  opacity: 0,
-  scale: 0.9,
-  stagger: 0.15,
-  duration: 0.8,
-  ease: "back.out(1.7)",
-  delay: 1
-});
+
 gsap.from(".social-links-grid a", {
   opacity: 0,
   scale: 0.8,

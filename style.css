@@ -1225,7 +1225,7 @@ body.light .tech-marquee-item {
 
 .stat-number,
 .stat-percent {
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(1.8rem, 5vw, 3.4rem);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -1253,7 +1253,7 @@ body.light .stat-label {
 .like-btn-heart {
   background: none;
   border: none;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   cursor: pointer;
   margin-left: 8px;
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
