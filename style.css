@@ -160,6 +160,7 @@ body.light {
 }
 
 .role {
+  background-color: var(--glass-bg);
   color: var(--accent);
   letter-spacing: 3px;
   font-size: 14px;
@@ -221,6 +222,7 @@ body.light {
   color: #aaa;
   margin: 20px 0;
 }
+
 body.light .desc {
   color: #444;
 }
@@ -659,6 +661,7 @@ body.light .tags i {
   color: #aaa;
   margin: 15px 0 40px;
 }
+
 body.light .contact-subtitle {
   color: #555;
 }
@@ -1277,15 +1280,19 @@ html.lenis,
 html.lenis-scrolling {
   scroll-behavior: auto !important;
 }
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
+
 .lenis.lenis-smooth [data-lenis-prevent] {
   overflow: clip;
 }
+
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
