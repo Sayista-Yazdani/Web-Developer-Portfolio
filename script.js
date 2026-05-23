@@ -55,137 +55,91 @@ if (menuBtn && navLinks) {
 }
 
 const canvas = document.getElementById("bubbleCanvas");
-const ctx = canvas.getContext("2d");
-
-let bubbles = [];
-let bubbleCount = 45;
-
-let mouse = {
-  x: null,
-  y: null,
-  radius: 120
-};
-
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 80;
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+const particleCount = 2000;
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(particleCount * 3);
+const initialPositions = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount * 3; i += 3) {
+  const x = (Math.random() - 0.5) * 160;
+  const y = (Math.random() - 0.5) * 160;
+  const z = (Math.random() - 0.5) * 100;
+  positions[i] = x;
+  positions[i+1] = y;
+  positions[i+2] = z;
+  initialPositions[i] = x;
+  initialPositions[i+1] = y;
+  initialPositions[i+2] = z;
+}
+geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+const material = new THREE.PointsMaterial({
+  size: 1.6,
+  color: 0xff7aa2,
+  transparent: true,
+  opacity: 0.55,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false
+});
+const particlesMesh = new THREE.Points(geometry, material);
+scene.add(particlesMesh);
+let mouse3D = { x: 0, y: 0, targetX: 0, targetY: 0 };
 window.addEventListener("mousemove", (event) => {
-  const rect = canvas.getBoundingClientRect();
-  mouse.x = event.clientX - rect.left;
-  mouse.y = event.clientY - rect.top;
+  mouse3D.targetX = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse3D.targetY = -(event.clientY / window.innerHeight) * 2 + 1;
 });
-
-window.addEventListener("mouseleave", () => {
-  mouse.x = null;
-  mouse.y = null;
-});
-
-function resizeCanvas() {
-  const dpr = window.devicePixelRatio || 1;
-  const homeSection = document.getElementById("home");
-  const logicalWidth = window.innerWidth;
-  const logicalHeight = homeSection ? homeSection.offsetHeight : 500;
-
-  canvas.width = logicalWidth * dpr;
-  canvas.height = logicalHeight * dpr;
-
-  canvas.style.width = `${logicalWidth}px`;
-  canvas.style.height = `${logicalHeight}px`;
-
-  ctx.resetTransform();
-  ctx.scale(dpr, dpr);
-}
-
-let resizeTimeout;
 window.addEventListener("resize", () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    resizeCanvas();
-  }, 150);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
-
-resizeCanvas();
-
-class Bubble {
-  constructor() {
-    this.reset();
-  }
-
-  reset() {
-    const dpr = window.devicePixelRatio || 1;
-    const logicalWidth = canvas.width / dpr;
-    const logicalHeight = canvas.height / dpr;
-
-    this.x = Math.random() * logicalWidth;
-    this.y = logicalHeight + Math.random() * 100;
-    this.radius = Math.random() * 5 + 2;
-    this.baseSpeed = Math.random() * 0.7 + 0.3;
-    this.speed = this.baseSpeed;
-    this.opacity = Math.random() * 0.35 + 0.15;
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255, 122, 162, ${this.opacity})`;
-    ctx.fill();
-  }
-
-  update() {
-    this.y -= this.speed;
-    const dpr = window.devicePixelRatio || 1;
-    const logicalWidth = canvas.width / dpr;
-
-    if (mouse.x !== null && mouse.y !== null) {
-      let dx = this.x - mouse.x;
-      let dy = this.y - mouse.y;
-      let distance = Math.sqrt(dx * dx + dy * dy);
-
-      if (distance < mouse.radius) {
-        let force = (mouse.radius - distance) / mouse.radius;
-        let directionX = dx / distance;
-        let directionY = dy / distance;
-
-        this.x += directionX * force * 3;
-        this.y += directionY * force * 3;
-      }
+let clock = new THREE.Clock();
+function animateParticles() {
+  const elapsedTime = clock.getElapsedTime();
+  const positionAttr = geometry.attributes.position;
+  const array = positionAttr.array;
+  mouse3D.x += (mouse3D.targetX - mouse3D.x) * 0.05;
+  mouse3D.y += (mouse3D.targetY - mouse3D.y) * 0.05;
+  let currentScroll = window.scrollY || 0;
+  for (let i = 0; i < particleCount; i++) {
+    const idx = i * 3;
+    const initX = initialPositions[idx];
+    const initY = initialPositions[idx+1];
+    const initZ = initialPositions[idx+2];
+    let waveX = Math.sin(elapsedTime * 0.4 + initY * 0.08) * 2.2;
+    let waveY = Math.cos(elapsedTime * 0.4 + initX * 0.08) * 2.2;
+    initialPositions[idx+1] += 0.035;
+    if (initialPositions[idx+1] > 80) {
+      initialPositions[idx+1] = -80;
     }
-
-    if (this.y + this.radius < 0 || this.x < 0 || this.x > logicalWidth) {
-      this.reset();
+    let x = initX + waveX;
+    let y = initY + waveY - (currentScroll * 0.035);
+    let z = initZ;
+    const mX3D = mouse3D.x * 60;
+    const mY3D = mouse3D.y * 40;
+    let dx = x - mX3D;
+    let dy = y - mY3D;
+    let dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 18) {
+      let force = (18 - dist) / 18;
+      x += (dx / dist) * force * 7.5;
+      y += (dy / dist) * force * 7.5;
     }
+    array[idx] = x;
+    array[idx+1] = y;
+    array[idx+2] = z;
   }
+  positionAttr.needsUpdate = true;
+  particlesMesh.rotation.y = elapsedTime * 0.015;
+  renderer.render(scene, camera);
+  requestAnimationFrame(animateParticles);
 }
-
-function initBubbles() {
-  bubbles = [];
-  for (let i = 0; i < bubbleCount; i++) {
-    bubbles.push(new Bubble());
-  }
-}
-
-let animationId;
-
-function animateBubbles() {
-  const dpr = window.devicePixelRatio || 1;
-  const logicalWidth = canvas.width / dpr;
-  const logicalHeight = canvas.height / dpr;
-
-  ctx.clearRect(0, 0, logicalWidth, logicalHeight);
-  bubbles.forEach(bubble => {
-    bubble.update();
-    bubble.draw();
-  });
-  animationId = requestAnimationFrame(animateBubbles);
-}
-
-initBubbles();
-animateBubbles();
-
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    cancelAnimationFrame(animationId);
-  } else {
-    animateBubbles();
-  }
-});
+animateParticles();
 
 const inquiryModal = document.getElementById("inquiryModal");
 const modalProjectName = document.getElementById("modalProjectName");
@@ -334,15 +288,7 @@ function showToast(message, type = "success") {
   }, 4000);
 }
 
-document.querySelectorAll(".project").forEach(card => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty("--mouse-x", `${x}px`);
-    card.style.setProperty("--mouse-y", `${y}px`);
-  });
-});
+
 
 const statsSection = document.querySelector(".stats-container");
 const counters = document.querySelectorAll(".stat-number");
@@ -490,4 +436,155 @@ if (likeBtn) {
     }
   });
 }
+
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  orientation: "vertical",
+  gestureOrientation: "vertical",
+  smoothWheel: true,
+  wheelMultiplier: 1,
+  smoothTouch: false,
+  touchMultiplier: 2,
+  infinite: false
+});
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+gsap.registerPlugin(ScrollTrigger);
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.from(".role", {
+  opacity: 0,
+  y: -30,
+  duration: 1,
+  ease: "power3.out",
+  delay: 0.2
+});
+gsap.from(".drop-text span", {
+  opacity: 0,
+  y: 50,
+  stagger: 0.1,
+  duration: 1.2,
+  ease: "power4.out",
+  delay: 0.4
+});
+gsap.from(".desc", {
+  opacity: 0,
+  y: 30,
+  duration: 1,
+  ease: "power3.out",
+  delay: 0.8
+});
+gsap.from(".hero-btns a", {
+  opacity: 0,
+  scale: 0.9,
+  stagger: 0.15,
+  duration: 0.8,
+  ease: "back.out(1.7)",
+  delay: 1
+});
+gsap.from("#about > *", {
+  scrollTrigger: {
+    trigger: "#about",
+    start: "top 85%",
+    toggleActions: "play none none none"
+  },
+  opacity: 0,
+  y: 40,
+  stagger: 0.12,
+  duration: 1,
+  ease: "power3.out"
+});
+gsap.from(".project", {
+  scrollTrigger: {
+    trigger: ".project-grid",
+    start: "top 85%",
+    toggleActions: "play none none none"
+  },
+  opacity: 0,
+  y: 50,
+  scale: 0.96,
+  stagger: 0.15,
+  duration: 1.2,
+  ease: "power3.out"
+});
+gsap.from(".info-card", {
+  scrollTrigger: {
+    trigger: ".contact-grid-info",
+    start: "top 85%",
+    toggleActions: "play none none none"
+  },
+  opacity: 0,
+  y: 40,
+  stagger: 0.15,
+  duration: 1,
+  ease: "power3.out"
+});
+gsap.from(".social-links-grid a", {
+  scrollTrigger: {
+    trigger: ".social-links-grid",
+    start: "top 90%",
+    toggleActions: "play none none none"
+  },
+  opacity: 0,
+  scale: 0.8,
+  stagger: 0.1,
+  duration: 0.8,
+  ease: "back.out(1.7)"
+});
+
+document.querySelectorAll(".project").forEach(card => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const percentX = (x - centerX) / centerX;
+    const percentY = (y - centerY) / centerY;
+    gsap.to(card, {
+      rotationY: percentX * 8,
+      rotationX: -percentY * 8,
+      transformPerspective: 1000,
+      ease: "power1.out",
+      duration: 0.3
+    });
+  });
+  card.addEventListener("mouseleave", () => {
+    gsap.to(card, {
+      rotationY: 0,
+      rotationX: 0,
+      ease: "power3.out",
+      duration: 0.8
+    });
+  });
+});
+
+document.querySelectorAll(".menu-btn, #likeBtn, .social-links-grid a, .nav nav a").forEach(btn => {
+  btn.addEventListener("mousemove", (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    gsap.to(btn, {
+      x: x * 0.35,
+      y: y * 0.35,
+      ease: "power1.out",
+      duration: 0.3
+    });
+  });
+  btn.addEventListener("mouseleave", () => {
+    gsap.to(btn, {
+      x: 0,
+      y: 0,
+      ease: "elastic.out(1.1, 0.4)",
+      duration: 0.8
+    });
+  });
+});
 
