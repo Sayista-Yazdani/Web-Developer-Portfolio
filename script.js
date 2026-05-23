@@ -82,7 +82,7 @@ const material = new THREE.PointsMaterial({
   color: 0xff7aa2,
   transparent: true,
   opacity: 0.55,
-  blending: THREE.AdditiveBlending,
+  blending: THREE.NormalBlending,
   depthWrite: false
 });
 const particlesMesh = new THREE.Points(geometry, material);
@@ -100,6 +100,12 @@ window.addEventListener("resize", () => {
 });
 let clock = new THREE.Clock();
 function animateParticles() {
+  const isLight = document.body.classList.contains("light");
+  const targetColor = isLight ? 0xd81b60 : 0xff7aa2;
+  if (material.color.getHex() !== targetColor) {
+    material.color.setHex(targetColor);
+    material.opacity = isLight ? 0.45 : 0.55;
+  }
   const elapsedTime = clock.getElapsedTime();
   const positionAttr = geometry.attributes.position;
   const array = positionAttr.array;
